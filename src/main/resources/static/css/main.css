@@ -1,0 +1,11 @@
+
+#title p{
+    margin-right: 10px;
+    display: inline-block;
+}
+#title,#main,h1{
+    display: inline-block;
+}
+.xiala{
+    display: none;
+}
