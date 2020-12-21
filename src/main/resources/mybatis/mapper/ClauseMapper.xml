@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kgc.laws.law.mapper.ClauseMapper" >
+  <resultMap id="BaseResultMap" type="com.kgc.laws.law.pojo.Clause" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="lawid" property="lawid" jdbcType="INTEGER" />
+    <result column="pageid" property="pageid" jdbcType="INTEGER" />
+    <result column="clauseid" property="clauseid" jdbcType="VARCHAR" />
+    <result column="lawstype" property="lawstype" jdbcType="VARCHAR" />
+    <result column="lawsversion" property="lawsversion" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="ccontent" property="ccontent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, lawid, pageid, clauseid, lawstype, lawsversion, title, ccontent
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.laws.law.pojo.ClauseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from clause
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from clause
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from clause
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kgc.laws.law.pojo.ClauseExample" >
+    delete from clause
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kgc.laws.law.pojo.Clause" >
+    insert into clause (id, lawid, pageid, 
+      clauseid, lawstype, lawsversion, 
+      title, ccontent)
+    values (#{id,jdbcType=INTEGER}, #{lawid,jdbcType=INTEGER}, #{pageid,jdbcType=INTEGER}, 
+      #{clauseid,jdbcType=VARCHAR}, #{lawstype,jdbcType=VARCHAR}, #{lawsversion,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{ccontent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kgc.laws.law.pojo.Clause" >
+    insert into clause
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="lawid != null" >
+        lawid,
+      </if>
+      <if test="pageid != null" >
+        pageid,
+      </if>
+      <if test="clauseid != null" >
+        clauseid,
+      </if>
+      <if test="lawstype != null" >
+        lawstype,
+      </if>
+      <if test="lawsversion != null" >
+        lawsversion,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="ccontent != null" >
+        ccontent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lawid != null" >
+        #{lawid,jdbcType=INTEGER},
+      </if>
+      <if test="pageid != null" >
+        #{pageid,jdbcType=INTEGER},
+      </if>
+      <if test="clauseid != null" >
+        #{clauseid,jdbcType=VARCHAR},
+      </if>
+      <if test="lawstype != null" >
+        #{lawstype,jdbcType=VARCHAR},
+      </if>
+      <if test="lawsversion != null" >
+        #{lawsversion,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="ccontent != null" >
+        #{ccontent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kgc.laws.law.pojo.ClauseExample" resultType="java.lang.Integer" >
+    select count(*) from clause
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update clause
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.lawid != null" >
+        lawid = #{record.lawid,jdbcType=INTEGER},
+      </if>
+      <if test="record.pageid != null" >
+        pageid = #{record.pageid,jdbcType=INTEGER},
+      </if>
+      <if test="record.clauseid != null" >
+        clauseid = #{record.clauseid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lawstype != null" >
+        lawstype = #{record.lawstype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lawsversion != null" >
+        lawsversion = #{record.lawsversion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ccontent != null" >
+        ccontent = #{record.ccontent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update clause
+    set id = #{record.id,jdbcType=INTEGER},
+      lawid = #{record.lawid,jdbcType=INTEGER},
+      pageid = #{record.pageid,jdbcType=INTEGER},
+      clauseid = #{record.clauseid,jdbcType=VARCHAR},
+      lawstype = #{record.lawstype,jdbcType=VARCHAR},
+      lawsversion = #{record.lawsversion,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      ccontent = #{record.ccontent,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.laws.law.pojo.Clause" >
+    update clause
+    <set >
+      <if test="lawid != null" >
+        lawid = #{lawid,jdbcType=INTEGER},
+      </if>
+      <if test="pageid != null" >
+        pageid = #{pageid,jdbcType=INTEGER},
+      </if>
+      <if test="clauseid != null" >
+        clauseid = #{clauseid,jdbcType=VARCHAR},
+      </if>
+      <if test="lawstype != null" >
+        lawstype = #{lawstype,jdbcType=VARCHAR},
+      </if>
+      <if test="lawsversion != null" >
+        lawsversion = #{lawsversion,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="ccontent != null" >
+        ccontent = #{ccontent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kgc.laws.law.pojo.Clause" >
+    update clause
+    set lawid = #{lawid,jdbcType=INTEGER},
+      pageid = #{pageid,jdbcType=INTEGER},
+      clauseid = #{clauseid,jdbcType=VARCHAR},
+      lawstype = #{lawstype,jdbcType=VARCHAR},
+      lawsversion = #{lawsversion,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      ccontent = #{ccontent,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
