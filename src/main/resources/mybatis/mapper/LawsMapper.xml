@@ -9,6 +9,7 @@
     <result column="lawsname" property="lawsname" jdbcType="VARCHAR" />
     <result column="lawsexlpain" property="lawsexlpain" jdbcType="VARCHAR" />
     <result column="lawspicture" property="lawspicture" jdbcType="VARCHAR" />
+    <collection property="pages" column="id" select="com.kgc.laws.law.mapper.PageMapper.selectPageByLawsId"></collection>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >

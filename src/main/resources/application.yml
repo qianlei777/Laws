@@ -24,3 +24,5 @@ spring:
 
 mybatis:
  mapper-locations: classpath:mybatis/mapper/*.xml
+ configuration:
+   lazy-loading-enabled: true

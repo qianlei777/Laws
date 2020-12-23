@@ -1,5 +1,7 @@
 package com.kgc.laws.law.pojo;
 
+import java.util.List;
+
 public class Laws {
     private Integer id;
 
@@ -14,6 +16,16 @@ public class Laws {
     private String lawsexlpain;
 
     private String lawspicture;
+
+    private List<Page> pages;
+
+    public List<Page> getPages() {
+        return pages;
+    }
+
+    public void setPages(List<Page> pages) {
+        this.pages = pages;
+    }
 
     public Integer getId() {
         return id;
@@ -69,5 +81,19 @@ public class Laws {
 
     public void setLawspicture(String lawspicture) {
         this.lawspicture = lawspicture == null ? null : lawspicture.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Laws{" +
+                "id=" + id +
+                ", lawsid=" + lawsid +
+                ", lawstype='" + lawstype + '\'' +
+                ", lawsversion='" + lawsversion + '\'' +
+                ", lawsname='" + lawsname + '\'' +
+                ", lawsexlpain='" + lawsexlpain + '\'' +
+                ", lawspicture='" + lawspicture + '\'' +
+                ", pages=" + pages +
+                '}';
     }
 }

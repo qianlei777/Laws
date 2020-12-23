@@ -18,13 +18,24 @@ public class PageServiceImpl implements PageService {
     PageMapper pageMapper;
 
     /**
-     * 添加目录
+     * 添加顶级目录
      * @param page
      * @return
      */
     @Override
-    public Integer addPage(Page page) {
+    public Integer addFirstPage(Page page) {
         Integer num = pageMapper.insertSelective(page);
         return num;
     }
+
+    /**
+     * 目录总数
+     * @return
+     */
+    @Override
+    public Integer PageCount() {
+        Integer pageCount = pageMapper.countByExample(null);
+        return pageCount;
+    }
+
 }
