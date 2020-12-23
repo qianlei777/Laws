@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>条款列表</title>
+</head>
+<body>
+
+<form th:action="@{/getClauseAll}" method="post">
+    <span>
+        选择法规
+        <select name="lawsid">
+            <option value="0">请选择</option>
+            <option th:each="l:${laws}" th:value="${l.lawsid}" th:text="${l.lawstype}+${l.lawsname}"></option>
+        </select>
+    </span>
+    <span>
+        条款号<input name="clauseid">
+    </span>
+    <span>
+        关键词<input name="like">
+    </span>
+    <input type="submit" value="查询">
+</form>
+
+<table border="1px">
+    <tr>
+        <td>条款号</td>
+        <td>条款标题</td>
+        <td>所属法规名称</td>
+        <td>版本号</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="p:${pageInfo.list}">
+        <td th:text="${p.laws.lawsid}+'.'+${p.id}"></td>
+        <td th:text="${p.title}"></td>
+        <td th:text="${p.laws.lawsname}"></td>
+        <td th:text="${p.lawsversion}"></td>
+        <td>
+            <a href="#">修改</a>
+            <a href="#">删除</a>
+        </td>
+    </tr>
+</table>
+<!--<div th:if="${pageInfo.size>=2}">-->
+<div>
+    <!--<a th:href="@{/getClauseAll(lawsid=${lawsid},like=${like},clauseid=${clauseid},pageNum=${pageInfo.getFirstPage()})}">首页</a>-->
+    <a th:href="@{/getClauseAll(lawsid=${lawsid},like=${like},clauseid=${clauseid},pageNum=${pageInfo.pageNum==pageInfo.getFirstPage()}?${pageInfo.getPageNum()}:${pageInfo.getPrePage()})}"> 上一页 </a>
+    <a th:href="@{/getClauseAll(lawsid=${lawsid},like=${like},clauseid=${clauseid},pageNum=${pageInfo.pageNum==pageInfo.getLastPage()}?${pageInfo.getPageNum()}:${pageInfo.getNextPage()})}">下一页</a>
+    <!--<a th:href="@{/getpageInfo(lawsid=${lawsid},like=${like},clauseid=${clauseid},pageNum=${pageInfo.getLastPage()})}">尾页</a>-->
+    <!--<a th:text="'第'+${pageInfo.getPageNum()}+'页/共'+${pageInfo.getPages()}+'页'"></a>-->
+</div>
+<!--</div>-->
+<!--<div th:if="${pageInfo.size<2}">-->
+<div>
+    <a th:text="'第'+${pageInfo.getPageNum()}+'页/共'+${pageInfo.getPageSize()}+'条数据'"></a>
+</div>
+
+</body>
+</html>

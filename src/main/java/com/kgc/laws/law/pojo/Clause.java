@@ -17,6 +17,16 @@ public class Clause {
 
     private String ccontent;
 
+    private Laws laws;
+
+    public Laws getLaws() {
+        return laws;
+    }
+
+    public void setLaws(Laws laws) {
+        this.laws = laws;
+    }
+
     public Integer getId() {
         return id;
     }

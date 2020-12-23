@@ -15,6 +15,8 @@ public class Laws {
 
     private String lawspicture;
 
+    private Integer lawsshow;
+
     public Integer getId() {
         return id;
     }
@@ -69,5 +71,13 @@ public class Laws {
 
     public void setLawspicture(String lawspicture) {
         this.lawspicture = lawspicture == null ? null : lawspicture.trim();
+    }
+
+    public Integer getLawsshow() {
+        return lawsshow;
+    }
+
+    public void setLawsshow(Integer lawsshow) {
+        this.lawsshow = lawsshow;
     }
 }

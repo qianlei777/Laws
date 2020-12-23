@@ -28,4 +28,5 @@ public interface LawsMapper {
     int updateByPrimaryKeySelective(Laws record);
 
     int updateByPrimaryKey(Laws record);
+    Laws selectByLawsid(Integer lawid);
 }
