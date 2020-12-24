@@ -17,6 +17,8 @@ public class Laws {
 
     private String lawspicture;
 
+    private Integer lawsshow;
+
     private List<Page> pages;
 
     public List<Page> getPages() {
@@ -83,17 +85,11 @@ public class Laws {
         this.lawspicture = lawspicture == null ? null : lawspicture.trim();
     }
 
-    @Override
-    public String toString() {
-        return "Laws{" +
-                "id=" + id +
-                ", lawsid=" + lawsid +
-                ", lawstype='" + lawstype + '\'' +
-                ", lawsversion='" + lawsversion + '\'' +
-                ", lawsname='" + lawsname + '\'' +
-                ", lawsexlpain='" + lawsexlpain + '\'' +
-                ", lawspicture='" + lawspicture + '\'' +
-                ", pages=" + pages +
-                '}';
+    public Integer getLawsshow() {
+        return lawsshow;
+    }
+
+    public void setLawsshow(Integer lawsshow) {
+        this.lawsshow = lawsshow;
     }
 }

@@ -9,6 +9,7 @@
     <result column="lawsname" property="lawsname" jdbcType="VARCHAR" />
     <result column="lawsexlpain" property="lawsexlpain" jdbcType="VARCHAR" />
     <result column="lawspicture" property="lawspicture" jdbcType="VARCHAR" />
+    <result column="lawsshow" property="lawsshow" jdbcType="INTEGER" />
     <collection property="pages" column="id" select="com.kgc.laws.law.mapper.PageMapper.selectPageByLawsId"></collection>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, lawsid, lawstype, lawsversion, lawsname, lawsexlpain, lawspicture
+    id, lawsid, lawstype, lawsversion, lawsname, lawsexlpain, lawspicture, lawsshow
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.laws.law.pojo.LawsExample" >
     select
@@ -105,10 +106,10 @@
   <insert id="insert" parameterType="com.kgc.laws.law.pojo.Laws" >
     insert into laws (id, lawsid, lawstype, 
       lawsversion, lawsname, lawsexlpain, 
-      lawspicture)
+      lawspicture, lawsshow)
     values (#{id,jdbcType=INTEGER}, #{lawsid,jdbcType=INTEGER}, #{lawstype,jdbcType=VARCHAR}, 
       #{lawsversion,jdbcType=VARCHAR}, #{lawsname,jdbcType=VARCHAR}, #{lawsexlpain,jdbcType=VARCHAR}, 
-      #{lawspicture,jdbcType=VARCHAR})
+      #{lawspicture,jdbcType=VARCHAR}, #{lawsshow,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.kgc.laws.law.pojo.Laws" >
     insert into laws
@@ -134,6 +135,9 @@
       <if test="lawspicture != null" >
         lawspicture,
       </if>
+      <if test="lawsshow != null" >
+        lawsshow,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -156,6 +160,9 @@
       </if>
       <if test="lawspicture != null" >
         #{lawspicture,jdbcType=VARCHAR},
+      </if>
+      <if test="lawsshow != null" >
+        #{lawsshow,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -189,6 +196,9 @@
       <if test="record.lawspicture != null" >
         lawspicture = #{record.lawspicture,jdbcType=VARCHAR},
       </if>
+      <if test="record.lawsshow != null" >
+        lawsshow = #{record.lawsshow,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -202,7 +212,8 @@
       lawsversion = #{record.lawsversion,jdbcType=VARCHAR},
       lawsname = #{record.lawsname,jdbcType=VARCHAR},
       lawsexlpain = #{record.lawsexlpain,jdbcType=VARCHAR},
-      lawspicture = #{record.lawspicture,jdbcType=VARCHAR}
+      lawspicture = #{record.lawspicture,jdbcType=VARCHAR},
+      lawsshow = #{record.lawsshow,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -228,6 +239,9 @@
       <if test="lawspicture != null" >
         lawspicture = #{lawspicture,jdbcType=VARCHAR},
       </if>
+      <if test="lawsshow != null" >
+        lawsshow = #{lawsshow,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -238,7 +252,8 @@
       lawsversion = #{lawsversion,jdbcType=VARCHAR},
       lawsname = #{lawsname,jdbcType=VARCHAR},
       lawsexlpain = #{lawsexlpain,jdbcType=VARCHAR},
-      lawspicture = #{lawspicture,jdbcType=VARCHAR}
+      lawspicture = #{lawspicture,jdbcType=VARCHAR},
+      lawsshow = #{lawsshow,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
