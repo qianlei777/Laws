@@ -38,4 +38,25 @@ public class PageServiceImpl implements PageService {
         return pageCount;
     }
 
+    /**
+     * 根据主键查询Page
+     * @param id
+     * @return
+     */
+    @Override
+    public Page getPage(Integer id) {
+        Page page = pageMapper.selectByPrimaryKey(id);
+        return page;
+    }
+
+    /**
+     * 根据主键ID更改目录
+     * @param page
+     * @return
+     */
+    @Override
+    public Integer updatePage(Page page) {
+        int i = pageMapper.updateByPrimaryKeySelective(page);
+        return i;
+    }
 }

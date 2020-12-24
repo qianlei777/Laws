@@ -1,13 +1,13 @@
 <div id="title" th:fragment="top">
-    <h1>航多知识管理系统</h1>&nbsp;&nbsp;&nbsp;&nbsp;<a>我的面板</a>&nbsp;&nbsp;<a>业务管理</a>&nbsp;&nbsp;<a>系统设置</a>
-    <p>您好,admin</p>
+    <h1>航多知识管理系统</h1>
+    <p><a>我的面板</a>&nbsp;&nbsp;<a>业务管理</a>&nbsp;&nbsp;<a>系统设置</a>您好,admin</p>
 </div>
 <div id="bar" th:fragment="left">
     <div id="clause">
         <h3 id="qwe">法规管理</h3>
         <div class="xiala">
             <p>法规列表</p>
-            <p>法规目录管理</p>
+            <p th:class="${active=='page'?'active':''}">法规目录管理</p>
             <p>条款列表</p>
         </div>
     </div>

@@ -1,11 +1,23 @@
 
 #title p{
-    margin-right: 10px;
+    float: right;
     display: inline-block;
 }
-#title,#main,#bar{
+#main,#bar,h1{
     display: inline-block;
 }
 .xiala{
     display: none;
+}
+#main{
+    float: right;
+}
+.firstpage{
+    margin-right: 955px;
+}
+.allpage{
+    margin-right: 650px;
+}
+.active{
+    color: blue;
 }
