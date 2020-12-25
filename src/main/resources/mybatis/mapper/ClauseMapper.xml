@@ -10,6 +10,7 @@
     <result column="lawsversion" property="lawsversion" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="ccontent" property="ccontent" jdbcType="VARCHAR" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
     <association property="laws" column="lawid" select="com.kgc.laws.law.mapper.LawsMapper.selectByLawsid"></association>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -71,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, lawid, pageid, clauseid, lawstype, lawsversion, title, ccontent
+    id, lawid, pageid, clauseid, lawstype, lawsversion, title, ccontent, keyword
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.laws.law.pojo.ClauseExample" >
     select
@@ -106,10 +107,12 @@
   <insert id="insert" parameterType="com.kgc.laws.law.pojo.Clause" >
     insert into clause (id, lawid, pageid, 
       clauseid, lawstype, lawsversion, 
-      title, ccontent)
+      title, ccontent, keyword
+      )
     values (#{id,jdbcType=INTEGER}, #{lawid,jdbcType=INTEGER}, #{pageid,jdbcType=INTEGER}, 
       #{clauseid,jdbcType=VARCHAR}, #{lawstype,jdbcType=VARCHAR}, #{lawsversion,jdbcType=VARCHAR}, 
-      #{title,jdbcType=VARCHAR}, #{ccontent,jdbcType=VARCHAR})
+      #{title,jdbcType=VARCHAR}, #{ccontent,jdbcType=VARCHAR}, #{keyword,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.kgc.laws.law.pojo.Clause" >
     insert into clause
@@ -138,6 +141,9 @@
       <if test="ccontent != null" >
         ccontent,
       </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -163,6 +169,9 @@
       </if>
       <if test="ccontent != null" >
         #{ccontent,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -199,6 +208,9 @@
       <if test="record.ccontent != null" >
         ccontent = #{record.ccontent,jdbcType=VARCHAR},
       </if>
+      <if test="record.keyword != null" >
+        keyword = #{record.keyword,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -213,7 +225,8 @@
       lawstype = #{record.lawstype,jdbcType=VARCHAR},
       lawsversion = #{record.lawsversion,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
-      ccontent = #{record.ccontent,jdbcType=VARCHAR}
+      ccontent = #{record.ccontent,jdbcType=VARCHAR},
+      keyword = #{record.keyword,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -242,6 +255,9 @@
       <if test="ccontent != null" >
         ccontent = #{ccontent,jdbcType=VARCHAR},
       </if>
+      <if test="keyword != null" >
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -253,7 +269,8 @@
       lawstype = #{lawstype,jdbcType=VARCHAR},
       lawsversion = #{lawsversion,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
-      ccontent = #{ccontent,jdbcType=VARCHAR}
+      ccontent = #{ccontent,jdbcType=VARCHAR},
+      keyword = #{keyword,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

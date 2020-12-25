@@ -37,15 +37,16 @@
         <td th:text="${p.laws.lawsname}"></td>
         <td th:text="${p.lawsversion}"></td>
         <td>
-            <a href="#">修改</a>
-            <a href="#">删除</a>
+            <a href="#" th:onclick="'javascript:toupdateClause('+${p.id}+')'">修改</a>
+            <a th:href="@{/delClause(id=${p.id})}" th:onclick="|return delClasuse()|" th:value="${p.id}">删除</a>
         </td>
     </tr>
 </table>
 <!--<div th:if="${pageInfo.size>=2}">-->
 <div>
     <!--<a th:href="@{/getClauseAll(lawsid=${lawsid},like=${like},clauseid=${clauseid},pageNum=${pageInfo.getFirstPage()})}">首页</a>-->
-    <a th:href="@{/getClauseAll(lawsid=${lawsid},like=${like},clauseid=${clauseid},pageNum=${pageInfo.pageNum==pageInfo.getFirstPage()}?${pageInfo.getPageNum()}:${pageInfo.getPrePage()})}"> 上一页 </a>
+    <a th:href="@{/getClauseAll(lawsid=${lawsid},like=${like},clauseid=${clauseid},pageNum=${pageInfo.pageNum==pageInfo.getFirstPage()}?${pageInfo.getPageNum()}:${pageInfo.getPrePage()})}">
+        上一页 </a>
     <a th:href="@{/getClauseAll(lawsid=${lawsid},like=${like},clauseid=${clauseid},pageNum=${pageInfo.pageNum==pageInfo.getLastPage()}?${pageInfo.getPageNum()}:${pageInfo.getNextPage()})}">下一页</a>
     <!--<a th:href="@{/getpageInfo(lawsid=${lawsid},like=${like},clauseid=${clauseid},pageNum=${pageInfo.getLastPage()})}">尾页</a>-->
     <!--<a th:text="'第'+${pageInfo.getPageNum()}+'页/共'+${pageInfo.getPages()}+'页'"></a>-->
@@ -53,8 +54,23 @@
 <!--</div>-->
 <!--<div th:if="${pageInfo.size<2}">-->
 <div>
-    <a th:text="'第'+${pageInfo.getPageNum()}+'页/共'+${pageInfo.getPageSize()}+'条数据'"></a>
+    <a th:text="'第'+${pageInfo.getPageNum()}+'页/共'+${pageInfo.getPages()}+'条数据'"></a>
 </div>
+
+<script type="text/javascript" src="/static/jquery-1.12.4.js"></script>
+<script>
+    function delClasuse() {
+        if (confirm("您确定要删除此条款吗？")) {
+            return true;
+        }
+        return false;
+    }
+
+    function toupdateClause(id) {
+        location.href = "/toupdateClause?id=" + id;
+    }
+
+</script>
 
 </body>
 </html>
