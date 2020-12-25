@@ -573,6 +573,66 @@ public class LawsExample {
             addCriterion("lawspicture not between", value1, value2, "lawspicture");
             return (Criteria) this;
         }
+
+        public Criteria andLawsshowIsNull() {
+            addCriterion("lawsshow is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLawsshowIsNotNull() {
+            addCriterion("lawsshow is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLawsshowEqualTo(Integer value) {
+            addCriterion("lawsshow =", value, "lawsshow");
+            return (Criteria) this;
+        }
+
+        public Criteria andLawsshowNotEqualTo(Integer value) {
+            addCriterion("lawsshow <>", value, "lawsshow");
+            return (Criteria) this;
+        }
+
+        public Criteria andLawsshowGreaterThan(Integer value) {
+            addCriterion("lawsshow >", value, "lawsshow");
+            return (Criteria) this;
+        }
+
+        public Criteria andLawsshowGreaterThanOrEqualTo(Integer value) {
+            addCriterion("lawsshow >=", value, "lawsshow");
+            return (Criteria) this;
+        }
+
+        public Criteria andLawsshowLessThan(Integer value) {
+            addCriterion("lawsshow <", value, "lawsshow");
+            return (Criteria) this;
+        }
+
+        public Criteria andLawsshowLessThanOrEqualTo(Integer value) {
+            addCriterion("lawsshow <=", value, "lawsshow");
+            return (Criteria) this;
+        }
+
+        public Criteria andLawsshowIn(List<Integer> values) {
+            addCriterion("lawsshow in", values, "lawsshow");
+            return (Criteria) this;
+        }
+
+        public Criteria andLawsshowNotIn(List<Integer> values) {
+            addCriterion("lawsshow not in", values, "lawsshow");
+            return (Criteria) this;
+        }
+
+        public Criteria andLawsshowBetween(Integer value1, Integer value2) {
+            addCriterion("lawsshow between", value1, value2, "lawsshow");
+            return (Criteria) this;
+        }
+
+        public Criteria andLawsshowNotBetween(Integer value1, Integer value2) {
+            addCriterion("lawsshow not between", value1, value2, "lawsshow");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

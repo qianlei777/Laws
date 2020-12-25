@@ -1,7 +1,7 @@
 spring:
   datasource:
     username: root
-    password: 123qazwsx
+    password: 5211314
     url: jdbc:mysql://localhost:3306/law?serverTimezone=UTC
     driver-class-name: com.mysql.jdbc.Driver
 #   数据源其他配置
@@ -24,3 +24,13 @@ spring:
 
 mybatis:
  mapper-locations: classpath:mybatis/mapper/*.xml
+
+
+ pagehelper:
+   helper-dialect: mysql
+   reasonable: true
+   support-methods-arguments: true
+   params: countSql
+   offset-as-page-num: true
+   row-bounds-with-count: true
+   page-size-zero: true

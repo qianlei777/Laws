@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="showall" method="post">
+    法规部号：<input type="text" name="lawsid">
+    法规名称：<input type="text" name="lawsname">
+    <input type="submit" value="查询">
+</form>
+<table border="1px">
+    <tr>
+        <td>法规部号</td>
+        <td>部号别名</td>
+        <td>法规版本号</td>
+        <td>法规名称</td>
+        <td>该法则是否显示</td>
+        <td>法规版本说明</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="(law:${law.list})">
+        <td th:text="${law.lawsid}"></td>
+        <td th:text="${law.lawstype}"></td>
+        <td th:text="${law.lawsversion}"></td>
+        <td th:text="${law.lawsname}"></td>
+        <td th:text="${law.lawsshow==1}?'显示':'不显示'"></td>
+        <td th:text="${law.lawsexlpain}"></td>
+        <td><a th:href="@{/update(id=${law.id})}">修改</a><a>删除</a></td>
+    </tr>
+    <td th:if="${not #strings.isEmpty(msg)}" th:text="查无此法规"></td>
+    <tr>
+    </tr>
+</table>
+<div>
+    <a th:href="@{/showall(lawssid=${lawsid},lawsname=${lawsname},PageNum=${law.getFirstPage()})}">首页</a>
+    <a th:href="@{/showall(lawssid=${lawsid},lawsname=${lawsname},PageNum=${law.pageNum==law.getFirstPage()}?${law.getPageNum()}:${law.getPrePage()})}">上一页</a>
+    <a th:href="@{/showall(lawssid=${lawsid},lawsname=${lawsname},PageNum=${law.pageNum==law.getLastPage()}?${law.getPageNum()}:${law.getNextPage()})}">下一页</a>
+    <a th:href="@{/showall(lawssid=${lawsid},lawsname=${lawsname},PageNum=${law.getLastPage()})}">尾页</a>
+    <a th:text="'第'+${law.getPageNum()}+'页/共'+${law.getPages()}+'页'"></a>
+</div>
+<!--<div th:if="${law.size<2}">-->
+    <!--<a th:text="'第'+${law.getPageNum()}+'页/共'+${law.getPageSize()}+'条数据'"></a>-->
+<!--</div>-->
+</body>
+</html>
