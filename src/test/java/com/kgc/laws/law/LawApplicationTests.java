@@ -8,6 +8,7 @@ class LawApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
