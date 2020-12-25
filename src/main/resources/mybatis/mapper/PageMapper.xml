@@ -225,4 +225,7 @@
       pagesort = #{pagesort,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectPageByLawsId" resultMap="BaseResultMap">
+    SELECT * FROM page where lawsid = #{VALUE}
+  </select>
 </mapper>

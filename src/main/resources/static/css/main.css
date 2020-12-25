@@ -1,0 +1,33 @@
+
+#title p{
+    float: right;
+    display: inline-block;
+}
+#main,#bar,h1{
+    display: inline-block;
+}
+.xiala{
+    display: none;
+}
+#main{
+    float: right;
+    margin-right: 955px;
+}
+.firstpage{
+    margin-right: 955px;
+}
+.allpage{
+    margin-right: 650px;
+}
+.active{
+    color: blue;
+}
+.sort{
+    width: 30px;
+}
+table tr:first-child{
+    width: 200px;
+}
+.child{
+    padding-left: 30px;
+}

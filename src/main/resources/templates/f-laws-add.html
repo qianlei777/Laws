@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="addlaw" method="post" enctype="multipart/form-data">
+    <p>法规部号：<input type="text" name="lawsid" id="bu">*<span id="span1"></span></p>
+    <p>法规别名：<input type="text" name="lawstype"></p>
+    <p>法规版本号：<input type="text" name="lawsversion"></p>
+    <p>法规名称：<input type="text" name="lawsname" id="ming">*<span id="span2"></span></p>
+    <p>是否显示：<input type="radio" name="lawsshow" value="1">显示
+        <input type="radio" name="lawsshow" value="0">不显示*<span id="span3"></span></p>
+    <p>首页法规图标：<input type="file" name="ip_pic"></p>
+    <p>法规版本说明：<input type="text" name="lawsexlpain"></p>
+    <input type="submit" value="提交">
+</form>
+<script src="webjars/jquery/2.2.4/jquery.js"></script>
+<script>
+    //是否显示非空验证
+    function show() {
+        var jj=$("input:radio:checked").val();
+        if(jj!=1&&jj!=0){
+            $("#span3").html("请选择是否显示");
+            return false
+        }else{
+            $("#span3").html("");
+        }
+    }
+
+    //验证部号是否为空和不是数字给予提示
+    function bu() {
+        var name=$("#bu").val();
+        if(name==""){
+            $("#span1").html("请输入法规部号");
+            return false;
+        }else {
+            //判断法规部号输入的是否是数字
+            var retNum=/^\d*$/;
+            if(retNum.test(name)){
+                $("#span1").html("");
+                //超出100位截取前一百位
+                if(name.length>100){
+                    var str=name.substring(0, 101);
+                    $("#bu").val("");
+                    $("#bu").val(str);
+                }
+            }else{
+                $("#span1").html("请在法规部号输入框输入数字");
+                return false;
+            }
+        }
+    }
+    $("#bu").blur(bu);
+
+    //法规名称验证
+    function ming() {
+        var nam=$("#ming").val();
+        if(nam==""){
+            $("#span2").html("请输入法规名称");
+            return false;
+        }else {
+            if(nam.length>100){
+                var nu=nam.substring(0,101);
+                $("#ming").val("");
+                $("#ming").val(nu);
+            }
+            $("#span2").html("");
+        }
+    }
+    //增加法规提交
+    $("form").submit(function () {
+        if(bu()==false){
+            return false;
+        }
+        if(ming()==false){
+            return false;
+        }
+        if(show()==false){
+            return false;
+        }
+        return true;
+    })
+</script>
+
+</body>
+
+</html>

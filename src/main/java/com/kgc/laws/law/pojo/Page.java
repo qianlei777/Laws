@@ -1,5 +1,7 @@
 package com.kgc.laws.law.pojo;
 
+import java.util.List;
+
 public class Page {
     private Integer id;
 
@@ -12,6 +14,16 @@ public class Page {
     private Integer lawsid;
 
     private Integer pagesort;
+
+    private List<Page>childpage;
+
+    public List<Page> getChildpage() {
+        return childpage;
+    }
+
+    public void setChildpage(List<Page> childpage) {
+        this.childpage = childpage;
+    }
 
     public Integer getId() {
         return id;
