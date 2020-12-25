@@ -1,7 +1,7 @@
 spring:
   datasource:
     username: root
-    password: 5211314
+    password: 123qazwsx
     url: jdbc:mysql://localhost:3306/law?serverTimezone=UTC
     driver-class-name: com.mysql.jdbc.Driver
 #   数据源其他配置
@@ -24,6 +24,8 @@ spring:
 
 mybatis:
  mapper-locations: classpath:mybatis/mapper/*.xml
+ configuration:
+   lazy-loading-enabled: true
 
 
  pagehelper:
