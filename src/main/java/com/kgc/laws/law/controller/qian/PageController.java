@@ -29,9 +29,7 @@ public class PageController {
     @RequestMapping("addFirstPage-html")
     public String addPage(Model model){
         List<Laws> allLaw = lawService.getAllLaw();
-        Integer pageCount = pageService.PageCount();
         model.addAttribute("allLaws",allLaw);
-        model.addAttribute("pageCount",pageCount);
         return "q-firstpage-add";
     }
     //添加成功跳转所有目录页面
@@ -46,8 +44,10 @@ public class PageController {
     }
     //全部/模糊查询所有目录
     @RequestMapping("allPage")
-    public String allPage(Model model){
+    public String allPage(Integer lawsid,Model model){
         List<Laws> allLaw = lawService.getAllLaw();
+        List<Page> allPage = pageService.getAllPage(lawsid);
+        model.addAttribute("allPage",allPage);
         model.addAttribute("allLaws",allLaw);
         return "q-allpage";
     }
@@ -64,10 +64,24 @@ public class PageController {
     //跳转添加下级目录页面
     @RequestMapping("nextPage-html")
     public String getPage(Integer id,Model model){
-        Page page = pageService.getPage(id);
+        List<Page> allPage = pageService.getAllPage(null);
+        Page page = null;
+        for (Page page1 : allPage) {
+            if(page1.getId()==id){
+                page = page1;
+                break;
+            }
+        }
         List<Laws> allLaw = lawService.getAllLaw();
+        int size = 0;
+        if(page.getChildpage()==null){
+            size = 1;
+        }else{
+            size = page.getChildpage().size()+2;
+        }
         model.addAttribute("allLaws",allLaw);
         model.addAttribute("nextPage",page);
+        model.addAttribute("size",size);
         return "q-nextpage-add";
     }
     //跳转修改下一级目录页面

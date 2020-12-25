@@ -11,6 +11,7 @@
 }
 #main{
     float: right;
+    margin-right: 955px;
 }
 .firstpage{
     margin-right: 955px;
@@ -20,4 +21,13 @@
 }
 .active{
     color: blue;
+}
+.sort{
+    width: 30px;
+}
+table tr:first-child{
+    width: 200px;
+}
+.child{
+    padding-left: 30px;
 }

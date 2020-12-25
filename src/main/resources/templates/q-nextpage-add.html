@@ -19,13 +19,13 @@
             </p>
             <hr>
             <p>
-                统计目录排序:<input type="text" name="pagesort" th:value="${num!=null}?${nextPage.pagesort}:${nextPage.pagesort+1}" readonly>
+                同级目录排序:<input type="text" name="pagesort" th:value="${num!=null}?${nextPage.pagesort}:${size}">
             </p>
             <hr>
             <p>
                 所属法规:
                 <select name="lawsid">
-                    <option th:each="law:${allLaws}" th:text="${law.getLawsname()}" th:value="${law.id}" th:checked="${law.id==nextPage.lawsid}" th:readonly="${law.id==nextPage.lawsid}"></option>
+                    <option th:each="law:${allLaws}" th:text="${law.getLawsname()}" th:value="${law.id}" th:checked="${law.id==nextPage.lawsid}"></option>
                 </select>
             </p>
             <hr>
