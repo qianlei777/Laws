@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class PageUtils{
-    PageComparator pageComparator = new PageComparator();
+
     public static List<Page>getChild(Integer id,List<Page> allPage){
         //顶级菜单下面的子菜单
         List<Page>childList = new ArrayList();

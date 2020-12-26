@@ -17,6 +17,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -46,7 +47,17 @@ public class PageController {
     @RequestMapping("allPage")
     public String allPage(Integer lawsid,Model model){
         List<Laws> allLaw = lawService.getAllLaw();
-        List<Page> allPage = pageService.getAllPage(lawsid);
+        if(lawsid!=null&&lawsid==0){
+            lawsid = null;
+        }
+        List<Page> parentList = pageService.getAllPage(lawsid);
+        List<Page> allPage = new ArrayList<>();
+        for (Page page : parentList) {
+            if(page.getPageparent()==0){
+                allPage.add(page);
+            }
+        }
+
         model.addAttribute("allPage",allPage);
         model.addAttribute("allLaws",allLaw);
         return "q-allpage";
@@ -73,21 +84,21 @@ public class PageController {
             }
         }
         List<Laws> allLaw = lawService.getAllLaw();
-        int size = 0;
-        if(page.getChildpage()==null){
-            size = 1;
-        }else{
-            size = page.getChildpage().size()+2;
-        }
         model.addAttribute("allLaws",allLaw);
         model.addAttribute("nextPage",page);
-        model.addAttribute("size",size);
         return "q-nextpage-add";
     }
     //跳转修改下一级目录页面
     @RequestMapping("uNextPage-html")
     public String updatePage(Integer id,Model model){
-        Page page = pageService.getPage(id);
+        List<Page> allPage = pageService.getAllPage(null);
+        Page page = null;
+        for (Page page1 : allPage) {
+            if(page1.getId()==id){
+                page = page1;
+                break;
+            }
+        }
         List<Laws> allLaw = lawService.getAllLaw();
         model.addAttribute("allLaws",allLaw);
         model.addAttribute("nextPage",page);
