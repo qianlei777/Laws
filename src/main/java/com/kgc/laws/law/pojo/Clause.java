@@ -17,6 +17,26 @@ public class Clause {
 
     private String ccontent;
 
+    private String keyword;
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    private Laws laws;
+
+    public Laws getLaws() {
+        return laws;
+    }
+
+    public void setLaws(Laws laws) {
+        this.laws = laws;
+    }
+
     public Integer getId() {
         return id;
     }

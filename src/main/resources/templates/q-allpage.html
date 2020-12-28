@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{common::top(active='yewu')}"></div>
+<div>
+    <div th:replace="~{common::left(active='page')}"></div>
+    <div id="main" class="allPage">
+        <div><a th:href="@{/allPage}" style="background-color: dodgerblue">法规目录列表</a>&nbsp;&nbsp;&nbsp;<a
+                th:href="@{/addFirstPage-html}">添加顶级目录</a></div>
+        <div id="lawsChoose">
+            <form method="post" th:action="@{/allPage}">
+                <p>
+                    选择法规:
+                    <select name="lawsid">
+                        <option value="0">请选择法规</option>
+                        <option th:each="law:${allLaws}" th:text="${law.getLawsname()}" th:value="${law.id}"></option>
+                    </select>
+                    <button type="submit">查询</button>
+                </p>
+            </form>
+        </div>
+        <div>
+            <table border="1px">
+                <thead>
+                <tr>
+                    <td>目录名称</td>
+                    <td>排序</td>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                    <th:block th:fragment="mulu(allPage)">
+                        <th:block th:each="parent:${allPage}">
+                            <tr>
+                                <td th:text="${parent.pagename}" th:onclick="'child('+${parent.id}+')'" th:class="'child'+${parent.pagelevel}"></td>
+                                <td><input type="text" th:value="${parent.pagesort}" class="sort"></td>
+                                <td><a th:href="@{/uNextPage-html(id=${parent.id})}">修改</a>&nbsp;&nbsp;<a>删除</a>&nbsp;&nbsp;<a th:href="@{/nextPage-html(id=${parent.id})}">添加下级菜单</a></td>
+                            </tr>
+                            <!--<tr th:each="child:${parent.childpage}" th:id="${'child'+parent.id}">-->
+                                <!--<td th:text="${child.pagename}" class="child"></td>-->
+                                <!--<td><input th:value="${child.pagesort}" class="sort"></td>-->
+                                <!--<td><a th:href="@{/uNextPage-html(id=${child.id})}">修改</a>&nbsp;&nbsp;<a>删除</a>&nbsp;&nbsp;<a-->
+                                        <!--th:href="@{/nextPage-html(id=${child.id})}">添加下级菜单</a></td>-->
+                            <!--</tr>-->
+                            <th:block th:if="${parent.childpage!=null}" th:include="this::mulu(${parent.childpage})"></th:block>
+                        </th:block>
+                    </th:block>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+</body>
+</html>

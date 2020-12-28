@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
 <body>
+
+<div th:replace="~{common::top}"></div>
+<div>
+<div th:replace="~{common::left(active='laws')}"></div>
+<div id="main" class="allLaws">
+    <div><a th:href="@{/fshow}" style="background-color: dodgerblue">法规列表</a>&nbsp;&nbsp;&nbsp;<a
+            th:href="@{/add}">法规添加</a></div>
 <form action="showall" method="post">
     法规部号：<input type="text" name="lawsid">
     法规名称：<input type="text" name="lawsname">
@@ -43,5 +51,9 @@
 <!--<div th:if="${law.size<2}">-->
     <!--<a th:text="'第'+${law.getPageNum()}+'页/共'+${law.getPageSize()}+'条数据'"></a>-->
 <!--</div>-->
+</div>
+</div>
+<script src="webjars/jquery/2.2.4/jquery.js"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
 </body>
 </html>

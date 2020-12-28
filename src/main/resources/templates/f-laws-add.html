@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
 <body>
+<div th:replace="~{common::top}"></div>
+<div>
+<div th:replace="~{common::left(active='laws')}"></div>
+<div id="main" class="firstpage">
+    <div><a th:href="@{/fshow}" style="background-color: dodgerblue">法规列表</a>&nbsp;&nbsp;&nbsp;<a
+            th:href="@{/add}">法规添加</a></div>
 <form action="addlaw" method="post" enctype="multipart/form-data">
     <p>法规部号：<input type="text" name="lawsid" id="bu">*<span id="span1"></span></p>
     <p>法规别名：<input type="text" name="lawstype"></p>
@@ -16,7 +23,10 @@
     <p>法规版本说明：<input type="text" name="lawsexlpain"></p>
     <input type="submit" value="提交">
 </form>
+</div>
+</div>
 <script src="webjars/jquery/2.2.4/jquery.js"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
 <script>
     //是否显示非空验证
     function show() {

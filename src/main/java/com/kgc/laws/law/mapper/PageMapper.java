@@ -28,4 +28,6 @@ public interface PageMapper {
     int updateByPrimaryKeySelective(Page record);
 
     int updateByPrimaryKey(Page record);
+
+    List<Page>selectPageByLawsId(Integer lawsid);
 }
