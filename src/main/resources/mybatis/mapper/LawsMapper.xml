@@ -104,7 +104,7 @@
   </delete>
   <insert id="insert" parameterType="com.kgc.laws.law.pojo.Laws" >
     insert into laws (id, lawsid, lawstype, 
-      lawsversion, lawsname, lawsexlpain, 
+      lawsversion, lawsname, lawsexlpain,
       lawspicture, lawsshow)
     values (#{id,jdbcType=INTEGER}, #{lawsid,jdbcType=INTEGER}, #{lawstype,jdbcType=VARCHAR}, 
       #{lawsversion,jdbcType=VARCHAR}, #{lawsname,jdbcType=VARCHAR}, #{lawsexlpain,jdbcType=VARCHAR}, 
