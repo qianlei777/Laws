@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" th:src="@{js/jquery-1.12.4.js}"></script>
+</head>
+<body>
+<h1>用户列表</h1>
+<div>
+    <form action="/getAllUser" method="post">
+        用户手机号：<input type="text" name="phone" th:value="${phone}">
+        <button type="submit">查询</button>
+    </form>
+</div>
+<div>
+<table style="width: 800px">
+    <tr id="#biaoheader" style="border: 1px solid black">
+        <td>姓名</td>
+        <td>手机号</td>
+        <td>性别</td>
+        <td>会员类型</td>
+        <td>注册日期</td>
+    </tr>
+    <tr th:each="users:${allUsers.list}"  style="border: 1px solid black">
+        <td hidden th:text="${users.id}" th:name="id+${users.id}"></td>
+        <td th:text="${users.username}">姓名</td>
+        <td th:text="${users.userphone}">手机号</td>
+        <td th:text="${users.sex==1?'男':'女'}">性别</td>
+        <td>
+            <input  th:checked="${users.membertype==0}" th:name="xuan+${users.id}" th:id="xuan+${users.id}" type="radio" th:value="${users.membertype}" th:onchange="'javascript:change('+${users.id}+')'">免费
+            <input  th:checked="${users.membertype==1}" th:name="xuan+${users.id}" th:id="xuan+${users.id}" type="radio" th:value="${users.membertype}" th:onchange="'javascript:change('+${users.id}+')'">付费
+        </td>
+        <td th:text="${#dates.format(users.createtime,'yyyy-MM-dd')}">注册日期</td>
+    </tr>
+</table>
+    <div>
+        <a th:href="@{/getAllUser(phone=${phone},pageNum=${allUsers.firstPage})}">首页</a>
+        <a th:href="@{/getAllUser(phone=${phone},pageNum=${pageNum==allUsers.getFirstPage()}?${pageNum}:${allUsers.getPrePage()})}">上一页</a>
+        <a th:href="@{/getAllUser(phone=${phone},pageNum=${pageNum==allUsers.getLastPage()}?${pageNum}:${allUsers.getNextPage()})}">下一页</a>
+        <a th:href="@{/getAllUser(phone=${phone},pageNum=${allUsers.lastPage})}">尾页</a>
+        <a th:text="'第'+${pageNum}+'页/共'+${allUsers.getPages()}+'页'"></a>
+    </div>
+</div>
+<script>
+        function change(id){
+            var flag=confirm("是否确认修改会员类型？");
+            var membertype=$("#xuan"+id).val();
+            if (flag){
+                $.get("/gai","id="+id+"&membertype="+membertype,function (flag) {
+                    if (flag==="true"){
+                        alert("修改会员类型成功！");
+                      window.location.reload();
+                    }else if (flag==="false"){
+                        alert("修改会员类型失败！");
+                        window.location.reload();
+                    }
+                })
+            }else {
+                window.location.reload();
+                return false;
+            }
+        }
+</script>
+</body>
+</html>
