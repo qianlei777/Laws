@@ -18,6 +18,15 @@ public class Clause {
     private String ccontent;
 
     private String keyword;
+    private Laws laws;
+
+    public Laws getLaws() {
+        return laws;
+    }
+
+    public void setLaws(Laws laws) {
+        this.laws = laws;
+    }
 
     public Integer getId() {
         return id;
@@ -81,13 +90,5 @@ public class Clause {
 
     public void setCcontent(String ccontent) {
         this.ccontent = ccontent == null ? null : ccontent.trim();
-    }
-
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public void setKeyword(String keyword) {
-        this.keyword = keyword == null ? null : keyword.trim();
     }
 }

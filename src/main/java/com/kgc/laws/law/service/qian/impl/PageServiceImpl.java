@@ -71,21 +71,18 @@ public class PageServiceImpl implements PageService {
      */
     @Override
     public List<Page> getAllPage(Integer lawsid) {
-        //所有目录
-        List<Page> allpages = pageMapper.selectByExample(null);
         //查询所有的顶级目录  pageparent=0
         PageExample parent = new PageExample();
-        parent.createCriteria().andPageparentEqualTo(0);
         if(lawsid!=null){
             parent.createCriteria().andLawsidEqualTo(lawsid);
         }
+        //所有目录
         parent.setOrderByClause("pagesort");
-        List<Page> parentList = pageMapper.selectByExample(parent);
+        List<Page> allpages = pageMapper.selectByExample(parent);
         //子目录查询
-        List<Page>childList = new ArrayList<>();
-        for (Page parentPage : parentList) {
-            parentPage.setChildpage(PageUtils.getChild(parentPage.getId(),allpages));
+        for (Page allPages : allpages) {
+            allPages.setChildpage(PageUtils.getChild(allPages.getId(),allpages));
         }
-        return parentList;
+        return allpages;
     }
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>条款修改</title>
+</head>
+<body>
+<form action="/updataClause" method="post">
+
+    <p>法规：
+        <select name="lawid">
+            <option th:value="0">请选择</option>
+            <option th:each="l:${laws}" th:value="${l.lawsid}" th:text="${l.lawstype}+${l.lawsname}">请选择</option>
+        </select>
+    </p>
+    <p>所在目录：
+        <input name="pageid" th:value="${clause.pageid}">
+    </p>
+    <p>条款编号：
+        <input name="clauseid" th:value="${clause.clauseid}">
+    </p>
+    <p>条款编号别名：
+        <input name="lawstype" th:value="${clause.lawstype}">
+    </p>
+    <p>条款版本号：
+        <input name="lawsversion" th:value="${clause.lawsversion}">
+    </p>
+    <p>条款标题：
+        <input name="title" th:value="${clause.title}">
+    </p>
+    <p>条款内容：
+        <textarea name="ccontent" cols="30" rows="6" th:text="${clause.ccontent}"></textarea>
+    </p>
+    <p>关键词：
+        <input name="keyword" th:text="${clause.keyword}">
+    </p>
+    <p>
+        <input type="submit" value="保存">
+        <!--<input type="submit" value="保存">-->
+        <input type="reset" value="返回">
+    </p>
+</form>
+
+</body>
+</html>

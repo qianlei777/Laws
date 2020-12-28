@@ -11,8 +11,10 @@
     <result column="lawspicture" property="lawspicture" jdbcType="VARCHAR" />
     <result column="lawsshow" property="lawsshow" jdbcType="INTEGER" />
     <collection property="pages" column="id" select="com.kgc.laws.law.mapper.PageMapper.selectPageByLawsId"></collection>
-
   </resultMap>
+  <select id="selectByLawsid" resultMap="BaseResultMap">
+    select * from laws where lawsid=#{value}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

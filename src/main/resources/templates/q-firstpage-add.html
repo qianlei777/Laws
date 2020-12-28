@@ -7,11 +7,11 @@
 
 </head>
 <body>
-<div th:replace="~{common::top}"></div>
+<div th:replace="~{common::top(active='yewu')}"></div>
 <div>
     <div th:replace="~{common::left(active='page')}"></div>
     <div id="main" class="firstpage">
-        <div><a th:href="@{/allPage}">法规目录列表</a>&nbsp;&nbsp;&nbsp;<a th:href="@{/addFirstPage-html}" style="background-color: dodgerblue">添加法规目录</a></div>
+        <div><a th:href="@{/allPage}">法规目录列表</a>&nbsp;&nbsp;&nbsp;<a th:href="@{/addFirstPage-html}" style="background-color: dodgerblue">添加顶级目录</a></div>
         <form th:action="@{/addFirstPage}" method="post">
             <p>
                 目录名称:<input type="text" name="pagename">
@@ -28,8 +28,8 @@
                 </select>
             </p>
             <hr>
-            <p>
-                上级目录:<input type="text" name="pageparent" readonly th:placeholder="法规目录" value="0">
+                上级目录:<input type="text" name="pageparent" readonly th:placeholder="法规目录" value="0" hidden>
+            <input type="text" readonly  value="顶级目录">
             </p>
             <hr>
             <p>

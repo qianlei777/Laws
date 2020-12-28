@@ -6,7 +6,7 @@
     <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
 <body>
-<div th:replace="~{common::top}"></div>
+<div th:replace="~{common::top(active='yewu')}"></div>
 <div>
     <div th:replace="~{common::left(active='page')}"></div>
     <div id="main" class="firstpage">
@@ -14,12 +14,12 @@
         <form th:action="@{/addNextPage}" method="post">
             <p>
                 <input type="text" hidden th:value="${num!=null}?${nextPage.id}" name="id">
-                <input value="_method" th:name="${num!=null}?put" hidden>
+                <input name="_method" value="put" th:if="${num!=null}" type="hidden">
                 目录名称:<input type="text" name="pagename" th:value="${num!=null}?${nextPage.pagename}">
             </p>
             <hr>
             <p>
-                同级目录排序:<input type="text" name="pagesort" th:value="${num!=null}?${nextPage.pagesort}:${size}">
+                同级目录排序:<input type="text" name="pagesort" th:value="${num!=null}?${nextPage.pagesort}:(${nextPage.childpage==null}?'1':${nextPage.childpage.size()+1})">
             </p>
             <hr>
             <p>
@@ -30,7 +30,8 @@
             </p>
             <hr>
             <p>
-                上级目录:<input type="text" name="pageparent" readonly th:placeholder="${nextPage.pagename}" th:value="${num!=null}?${nextPage.pageparent}:${nextPage.id}">
+                上级目录:<input type="text" name="pageparent" readonly th:placeholder="${nextPage.pagename}" th:value="${num!=null}?${nextPage.pageparent}:${nextPage.id}" hidden>
+                <input type="text" readonly  th:value="${num!=null}?'':${nextPage.pagename}">
             </p>
             <hr>
             <p>
