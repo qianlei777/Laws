@@ -1,6 +1,7 @@
 <div id="title" th:fragment="top">
     <h1>航多知识管理系统</h1>
-    <p><a>我的面板</a>&nbsp;&nbsp;<a th:class="${active=='yewu'?'yewu':''}">业务管理</a>&nbsp;&nbsp;<a>系统设置</a>您好,admin</p>
+    <p><a>我的面板</a>&nbsp;&nbsp;<a th:class="${active=='yewu'?'yewu':''}">业务管理</a>
+        &nbsp;&nbsp;<a th:href="@{/toSetting}" th:οnclick="|return isRole('${admin.role}')|">系统设置</a>您好,admin</p>
 </div>
 <div id="bar" th:fragment="left">
     <div id="clause">
@@ -23,4 +24,23 @@
             <p>资讯列表</p>
         </div>
     </div>
+</div>
+
+<!--系统设置的left-->
+<div id="setting" th:fragment="settings">
+
+    <div class="xiala">
+        <p><a >网站设置</a></p>
+        <p><a >公司介绍</a></p>
+        <p><a >服务协议</a></p>
+        <p><a >邮件SMTP设置</a></p>
+        <p><a >短信设置</a></p>
+        <p><a th:class="${active=='page'?'active':''}" th:href="@{/allPage}">管理员管理</a></p>
+        <p><a >意见反馈列表</a></p>
+
+        <p>条款列表</p>
+
+
+    </div>
+
 </div>

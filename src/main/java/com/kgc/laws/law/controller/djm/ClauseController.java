@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 @Controller
-public class MyController {
+public class ClauseController {
     @Resource
     ClauseService clauseService;
 
