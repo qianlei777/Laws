@@ -11,5 +11,5 @@ public interface PageService {
     Page getPage(Integer id);
     Integer updatePage(Page page);
     List<Page>getAllPage(Integer lawsid);
-    TreeMap<Integer,String>getParentName(Integer id);
+    TreeMap<Integer,Page>getParentName(Integer id);
 }

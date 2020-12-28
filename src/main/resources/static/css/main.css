@@ -54,7 +54,7 @@ table tr:first-child{
 #maintitle p:nth-child(1){
     margin-right: 800px;
 }
-#maintype .fenlei:not(:nth-child(3n+1)){
+#maintype .fenlei{
 display: inline-block;
 }
 .refer{
@@ -75,9 +75,6 @@ display: inline-block;
     cursor: pointer;
 }
 .tijiao{
-    /*text-align: center;*/
-    /*vertical-align: middle;*/
-    /*display: table-cell;*/
     color: white;
     font-size: 30px;
     width: 300px;
@@ -98,4 +95,23 @@ display: inline-block;
 }
 .textbox::placeholder{
     font-size: 18px;
+}
+.onlypage{
+    display: inline-block;
+}
+#ccontent p:nth-child(2){
+    float: right;
+    margin-right: 200px;
+}
+.like{
+    font-size:25px;
+    margin:5px;
+    color:#ccc; cursor:pointer;
+}
+.cs{
+    color:#f00;
+}
+.more{
+    position: relative;
+    right: 0px;
 }

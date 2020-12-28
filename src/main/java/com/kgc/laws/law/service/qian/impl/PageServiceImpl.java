@@ -95,12 +95,12 @@ public class PageServiceImpl implements PageService {
      * @return
      */
     @Override
-    public TreeMap<Integer, String> getParentName(Integer id) {
+    public TreeMap<Integer, Page> getParentName(Integer id) {
 
         Page page = pageMapper.selectByPrimaryKey(id);
         List<Page> allpages = pageMapper.selectByExample(null);
-        TreeMap<Integer,String>treeMap = new TreeMap<>();
-        TreeMap<Integer, String> parent = PageUtils.getParent(page.getPageparent(), allpages, treeMap);
+        TreeMap<Integer,Page>treeMap = new TreeMap<>();
+        TreeMap<Integer, Page> parent = PageUtils.getParent(page.getId(), allpages, treeMap);
         return parent;
     }
 }

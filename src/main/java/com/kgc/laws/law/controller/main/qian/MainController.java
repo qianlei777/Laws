@@ -23,12 +23,14 @@ public class MainController {
     PageService pageService;
     @Resource
     ClauseService clauseService;
+    //跳转前端首页
     @RequestMapping("/main")
     public String getAllClause(Model model){
         List<Laws> allLaws= lawService.getAllLaw();
         model.addAttribute("allLaws",allLaws);
         return"html/main";
     }
+    //跳转法规目录页
     @RequestMapping("/allPandC")
     public String allPandC(Model model,Integer id){
         List<Page> allPage = pageService.getAllPage(id);
@@ -45,12 +47,18 @@ public class MainController {
         model.addAttribute("allpage",parentList);
         return"html/pageAndClause";
     }
+    //跳转条款显示页面
     @RequestMapping("/oneClause")
     public String getOneClause(Model model,Integer id){
         Clause clauseById = clauseService.getClauseById(id);
-        TreeMap<Integer, String> parentName = pageService.getParentName(clauseById.getId());
-        System.out.println(parentName.keySet().size());
+        TreeMap<Integer, Page> parentName = pageService.getParentName(clauseById.getPageid());
         model.addAttribute("parent",parentName);
+        model.addAttribute("clause",clauseById);
         return"html/show-clause";
+    }
+    //跳转咨询页面
+    @RequestMapping("/godisscuss")
+    public String goDisscuss(){
+        return "html/add-disscuss";
     }
 }

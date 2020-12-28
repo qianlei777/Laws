@@ -23,6 +23,7 @@ public class PageUtils{
         }
         return sortList(childList);
     }
+    //根据同级排序
     public static List<Page> sortList(List<Page> list){
         Collections.sort(list, new Comparator<Object>()
         {
@@ -41,17 +42,17 @@ public class PageUtils{
         });
         return list;
     }
-    public static TreeMap<Integer,String> getParent(Integer id,List<Page> allPage,TreeMap<Integer,String>treeMap){
+    //获取条款所在的目录及父级目录
+    public static TreeMap<Integer,Page> getParent(Integer id,List<Page> allPage,TreeMap<Integer,Page>treeMap){
         for (Page page : allPage) {
             if(page.getId()==id){
-                if (page.getPagelevel()==1){
-                    treeMap.put(1,page.getPagename());
+                treeMap.put(page.getPagelevel(),page);
+                if (page.getPageparent()==0){
                     break;
                 }else{
-                    treeMap.put(page.getPagelevel(),page.getPagename());
                     getParent(page.getPageparent(),allPage,treeMap);
+                    break;
                 }
-                break;
             }
         }
         return treeMap;

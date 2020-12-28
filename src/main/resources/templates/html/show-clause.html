@@ -7,19 +7,23 @@
 </head>
 <body>
 <div>
-    <p th:each="value:${parent}" th:text="${value.value}"></p>
+    <p th:each="value:${parent}" th:text="${value.value.id==clause.pageid}?${value.value.pagename}:${value.value.pagename}+'>'" class="onlypage"></p>
 </div>
-<div>
-    <p><a>收藏</a></p>
-    <p></p>
+<div id="ccontent">
+    <p th:text="'第'+${clause.clauseid}+'条'" class="onlypage"></p>
+    <p class="onlypage"><span class="like">&#9733;</span>收藏</p>
+    <p th:text="${clause.ccontent}"></p>
 </div>
-<div class="refer" onclick="disscuss">立即咨询</div>
+<div class="refer" onclick="disscuss()">立即咨询</div>
 <section>
     <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
     <script type="text/javascript">
-        function disscuss() {
-            location.href='/allPandC?id='+id;
-        }
+      function disscuss() {
+          location.href='/godisscuss';
+      }
+      $(".like").click(function () {
+          $(this).toggleClass('cs');
+      })
     </script>
 </section>
 </body>
