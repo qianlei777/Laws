@@ -11,7 +11,6 @@
 }
 #main{
     float: right;
-    margin-right: 955px;
 }
 .firstpage{
     margin-right: 955px;
@@ -30,4 +29,7 @@ table tr:first-child{
 }
 .child{
     padding-left: 30px;
+}
+.allLaws{
+    margin-right: 800px;
 }

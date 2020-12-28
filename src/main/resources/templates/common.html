@@ -6,8 +6,8 @@
     <div id="clause">
         <h3 id="qwe">法规管理</h3>
         <div class="xiala">
-            <p>法规列表</p>
-            <p th:class="${active=='page'?'active':''}">法规目录管理</p>
+            <p><a th:class="${active=='laws'?'active':''}" th:href="@{/fshow}">法规列表</a></p>
+            <p><a th:class="${active=='page'?'active':''}" th:href="@{/allPage}">法规目录管理</a></p>
             <p>条款列表</p>
         </div>
     </div>

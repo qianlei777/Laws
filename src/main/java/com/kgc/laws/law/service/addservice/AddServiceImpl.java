@@ -30,10 +30,11 @@ public class AddServiceImpl implements AddService {
 
         PageHelper.startPage(PageNum,PageSize);
         LawsExample example=new LawsExample();
-        if(lawsid!=null){
+        if(lawsid!=null&&!(lawsid.equals(""))){
             example.createCriteria().andLawsidEqualTo(lawsid);
         }
         if(lawsname!=null&&!(lawsname.equals(""))){
+            System.out.println(lawsname);
             example.createCriteria().andLawsnameLike(lawsname);
         }
         List<Laws> law = lawsMapper.selectByExample(example);

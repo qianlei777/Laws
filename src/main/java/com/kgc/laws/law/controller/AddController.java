@@ -24,9 +24,17 @@ public class AddController {
     @Autowired
     AddService addService;
 
+    //增加页面
     @RequestMapping("add")
     public String addtext(){
         return "f-laws-add";
+    }
+
+
+    //法规查询页面
+    @RequestMapping("fshow")
+    public String addtext00(){
+        return "redirect:showall";
     }
 
 
@@ -62,6 +70,7 @@ public class AddController {
         String realPath=session.getServletContext().getRealPath("/images/uploadfiles/");
         //判断该路径是否存在，不存在则创建
         File file1=new File(realPath);
+
         if(!file1.exists()){
             file1.mkdir();
         }

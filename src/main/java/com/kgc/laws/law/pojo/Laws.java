@@ -25,6 +25,14 @@ public class Laws {
         return pages;
     }
 
+    public Integer getLawsshow() {
+        return lawsshow;
+    }
+
+    public void setLawsshow(Integer lawsshow) {
+        this.lawsshow = lawsshow;
+    }
+
     public void setPages(List<Page> pages) {
         this.pages = pages;
     }

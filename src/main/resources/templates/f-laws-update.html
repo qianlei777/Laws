@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
 <body>
+<div th:replace="~{common::top}"></div>
+<div>
+<div th:replace="~{common::left(active='laws')}"></div>
+<div id="main" class="firstpage">
 <form action="addupdate" method="post">
     <input type="hidden" th:value="${la.id}" name="id">
 <p>法规部号：<input type="text" th:value="${la.lawsid}" name="lawsid" id="bu">*<span id="span1"></span></p>
@@ -13,12 +18,13 @@
 <p>法规名称：<input type="text" name="lawsname" id="ming" th:value="${la.lawsname}">*<span id="span2"></span></p>
 <p>是否显示：<input type="radio" name="lawsshow" th:checked="${la.lawsshow==1}" value="1" id="ap">显示
     <input type="radio" name="lawsshow" value="0" th:checked="${la.lawsshow==0}">不显示*<span id="span3"></span></p>
-<p>首页法规图标：<input type="text" name="lawspicture" th:value="${la.lawspicture}"></p>
 <p>法规版本说明：<input type="text" name="lawsexlpain" th:value="${la.lawsexlpain}"></p>
 <input type="submit" value="修改">
 </form>
-
+</div>
+</div>
 <script src="webjars/jquery/2.2.4/jquery.js"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
 <script>
     //是否显示非空验证
     function show() {
