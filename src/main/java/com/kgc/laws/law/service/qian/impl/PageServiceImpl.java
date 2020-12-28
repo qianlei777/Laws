@@ -3,6 +3,7 @@ package com.kgc.laws.law.service.qian.impl;
 import com.kgc.laws.law.mapper.PageMapper;
 import com.kgc.laws.law.pojo.Page;
 import com.kgc.laws.law.pojo.PageExample;
+import com.kgc.laws.law.service.djm.ClauseService;
 import com.kgc.laws.law.service.qian.PageService;
 import com.kgc.laws.law.utils.PageUtils;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import javax.annotation.Resource;
 import javax.print.attribute.standard.PageRanges;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 /**
  * @author qianlei
@@ -20,6 +22,7 @@ import java.util.List;
 public class PageServiceImpl implements PageService {
     @Resource
     PageMapper pageMapper;
+
 
     /**
      * 添加顶级目录
@@ -84,5 +87,20 @@ public class PageServiceImpl implements PageService {
             allPages.setChildpage(PageUtils.getChild(allPages.getId(),allpages));
         }
         return allpages;
+    }
+
+    /**
+     * 获取条款的父节点
+     * @param id
+     * @return
+     */
+    @Override
+    public TreeMap<Integer, String> getParentName(Integer id) {
+
+        Page page = pageMapper.selectByPrimaryKey(id);
+        List<Page> allpages = pageMapper.selectByExample(null);
+        TreeMap<Integer,String>treeMap = new TreeMap<>();
+        TreeMap<Integer, String> parent = PageUtils.getParent(page.getPageparent(), allpages, treeMap);
+        return parent;
     }
 }

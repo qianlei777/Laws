@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div>
+    <div id="maintype">
+        <div th:each="laws:${allLaws}" class="fenlei">
+            <div>
+                <div><a th:text="${laws.lawsid}" th:onclick="'javascript:allClause('+${laws.id}+')'"></a></div>
+                <p th:text="${laws.lawstype}"></p>
+            </div>
+        </div>
+    </div>
+    <div id="favorite">
+        <p>我的收藏<a>更多></a></p>
+        <hr/>
+
+    </div>
+</div>
+<section>
+    <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+    <script type="text/javascript">
+        function allClause(id) {
+            location.href='/allPandC?id='+id;
+        }
+    </script>
+</section>
+</body>
+</html>

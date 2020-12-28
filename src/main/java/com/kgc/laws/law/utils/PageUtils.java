@@ -2,10 +2,7 @@ package com.kgc.laws.law.utils;
 
 import com.kgc.laws.law.pojo.Page;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class PageUtils{
 
@@ -43,6 +40,21 @@ public class PageUtils{
             }
         });
         return list;
+    }
+    public static TreeMap<Integer,String> getParent(Integer id,List<Page> allPage,TreeMap<Integer,String>treeMap){
+        for (Page page : allPage) {
+            if(page.getId()==id){
+                if (page.getPagelevel()==1){
+                    treeMap.put(1,page.getPagename());
+                    break;
+                }else{
+                    treeMap.put(page.getPagelevel(),page.getPagename());
+                    getParent(page.getPageparent(),allPage,treeMap);
+                }
+                break;
+            }
+        }
+        return treeMap;
     }
 
 }

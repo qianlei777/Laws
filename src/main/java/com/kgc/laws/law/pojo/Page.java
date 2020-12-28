@@ -15,7 +15,18 @@ public class Page {
 
     private Integer pagesort;
 
+    private List<Clause> clauses;
+
     private List<Page>childpage;
+
+
+    public List<Clause> getClauses() {
+        return clauses;
+    }
+
+    public void setClauses(List<Clause> clauses) {
+        this.clauses = clauses;
+    }
 
     public List<Page> getChildpage() {
         return childpage;
@@ -71,5 +82,19 @@ public class Page {
 
     public void setPagesort(Integer pagesort) {
         this.pagesort = pagesort;
+    }
+
+    @Override
+    public String toString() {
+        return "Page{" +
+                "id=" + id +
+                ", pagename='" + pagename + '\'' +
+                ", pagelevel=" + pagelevel +
+                ", pageparent=" + pageparent +
+                ", lawsid=" + lawsid +
+                ", pagesort=" + pagesort +
+                ", clauses=" + clauses +
+                ", childpage=" + childpage +
+                '}';
     }
 }

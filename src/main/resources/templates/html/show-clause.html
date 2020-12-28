@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div>
+    <p th:each="value:${parent}" th:text="${value.value}"></p>
+</div>
+<div>
+    <p><a>收藏</a></p>
+    <p></p>
+</div>
+<div class="refer" onclick="disscuss">立即咨询</div>
+<section>
+    <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+    <script type="text/javascript">
+        function disscuss() {
+            location.href='/allPandC?id='+id;
+        }
+    </script>
+</section>
+</body>
+</html>

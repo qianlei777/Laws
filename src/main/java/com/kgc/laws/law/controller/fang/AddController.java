@@ -1,4 +1,4 @@
-package com.kgc.laws.law.controller;
+package com.kgc.laws.law.controller.fang;
 
 import com.github.pagehelper.PageInfo;
 import com.kgc.laws.law.pojo.Laws;
