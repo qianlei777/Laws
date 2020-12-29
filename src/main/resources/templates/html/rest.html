@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+</head>
+<body>
+<form action="/addUsers" method="post">
+    <p><input type="text" name="username" placeholder="请输入真实姓名">
+        <input type="radio" name="sex" value="1" placeholder="男" th:selected>
+        <input type="radio" name="sex" value="2" placeholder="女"></p>
+    <p><input type="text" name="userphone" placeholder="手机号"></p>
+    <p><input type="text" placeholder="请输入验证码"><a href="#">发送验证码</a></p>
+    <p><input type="password" name="password" placeholder="密码设置6-20位字符，区分大小写"></p>
+    <P><input type="password" name="quepwd" placeholder="请再次输入密码"></P>
+    <p><button type="submit">注册</button></p>
+    <p><button><a href="login.html">登录</a></button></p>
+</form>
+</body>
+</html>
