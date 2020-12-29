@@ -1,7 +1,7 @@
 package com.kgc.laws.law.controller.yaya;
 
 import com.github.pagehelper.PageInfo;
-import com.kgc.laws.law.pojo.disscuss;
+import com.kgc.laws.law.pojo.Disscuss;
 import com.kgc.laws.law.service.zixun.GetDisscuss.DiscussService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class DisscussController {
             pageNum=1;
         }
         int pageSize=2;
-        PageInfo<disscuss> allDisscuss = discussService.getAllDisscuss(userphone, content, pageNum, pageSize);
+        PageInfo<Disscuss> allDisscuss = discussService.getAllDisscuss(userphone, content, pageNum, pageSize);
         model.addAttribute("allDisscuss",allDisscuss);
         model.addAttribute("userphone",userphone);
         model.addAttribute("content",content);
@@ -45,8 +45,8 @@ public class DisscussController {
 
     @RequestMapping("/cha")
     @ResponseBody
-    public disscuss getDisscussById(Integer id){
-        disscuss disscussById = discussService.getDisscussById(id);
+    public Disscuss getDisscussById(Integer id){
+        Disscuss disscussById = discussService.getDisscussById(id);
         return disscussById;
     }
 }

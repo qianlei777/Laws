@@ -62,7 +62,7 @@ public class ClauseServiceImpl implements ClauseService {
 
     @Override
     public int updataClauseByClause(Clause clause) {
-
         return clauseMapper.updateByPrimaryKeySelective(clause);
     }
+
 }
