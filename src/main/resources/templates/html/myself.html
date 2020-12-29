@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div id="gologin">
+    <h3 onclick="login()" th:if="${session.user==null}"><span></span>请登录</h3>
+    <h3 th:if="${session.user!=null}" th:text="${session.user.username}"></h3>
+</div>
+
+<div>
+    <div>
+        <span></span><span>我收藏的法规</span>>
+        <hr>
+    </div>
+    <div>
+        <span></span><span>我收藏的法规</span>>
+        <hr>
+    </div>
+</div>
+<br>
+<div>
+    <div>
+        <span></span><span>手机号码</span>>
+        <hr>
+    </div>
+    <div>
+        <span></span><span>修改密码</span>>
+        <hr>
+    </div>
+</div>
+<br>
+<div>
+    <div>
+        <span></span><span>意见反馈</span>>
+        <hr>
+    </div>
+</div>
+<div>
+    <div>
+        <span></span><span>关于我们</span>>
+        <hr>
+    </div>
+</div>
+<th:block th:include="~{common::footer}"></th:block>
+<section>
+    <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+    <script type="text/javascript">
+        function login() {
+            location.href='/login.html';
+        }
+    </script>
+</section>
+</body>
+</html>

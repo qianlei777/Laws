@@ -115,3 +115,14 @@ display: inline-block;
     position: relative;
     right: 0px;
 }
+#gologin{
+    cursor: pointer;
+}
+.foot{
+    display: inline-block;
+    width: 500px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
