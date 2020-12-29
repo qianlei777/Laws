@@ -1,31 +1,31 @@
 package com.kgc.laws.law.mapper;
 
-import com.kgc.laws.law.pojo.disscuss;
-import com.kgc.laws.law.pojo.disscussExample;
+import com.kgc.laws.law.pojo.Disscuss;
+import com.kgc.laws.law.pojo.DisscussExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface disscussMapper {
-    int countByExample(disscussExample example);
+public interface DisscussMapper {
+    int countByExample(DisscussExample example);
 
-    int deleteByExample(disscussExample example);
+    int deleteByExample(DisscussExample example);
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(disscuss record);
+    int insert(Disscuss record);
 
-    int insertSelective(disscuss record);
+    int insertSelective(Disscuss record);
 
-    List<disscuss> selectByExample(disscussExample example);
+    List<Disscuss> selectByExample(DisscussExample example);
 
-    disscuss selectByPrimaryKey(Integer id);
+    Disscuss selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") disscuss record, @Param("example") disscussExample example);
+    int updateByExampleSelective(@Param("record") Disscuss record, @Param("example") DisscussExample example);
 
-    int updateByExample(@Param("record") disscuss record, @Param("example") disscussExample example);
+    int updateByExample(@Param("record") Disscuss record, @Param("example") DisscussExample example);
 
-    int updateByPrimaryKeySelective(disscuss record);
+    int updateByPrimaryKeySelective(Disscuss record);
 
-    int updateByPrimaryKey(disscuss record);
+    int updateByPrimaryKey(Disscuss record);
 }

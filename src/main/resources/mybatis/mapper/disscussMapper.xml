@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.kgc.laws.law.mapper.disscussMapper" >
-  <resultMap id="BaseResultMap" type="com.kgc.laws.law.pojo.disscuss" >
+<mapper namespace="com.kgc.laws.law.mapper.DisscussMapper" >
+  <resultMap id="BaseResultMap" type="com.kgc.laws.law.pojo.Disscuss" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="consulttime" property="consulttime" jdbcType="TIMESTAMP" />
     <result column="userphone" property="userphone" jdbcType="VARCHAR" />
     <result column="relevantclause" property="relevantclause" jdbcType="VARCHAR" />
+    <result column="works" property="works" jdbcType="VARCHAR" />
+    <result column="weixin" property="weixin" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,9 +71,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, username, content, consulttime, userphone, relevantclause
+    id, username, content, consulttime, userphone, relevantclause, works, weixin, email
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.laws.law.pojo.disscussExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.laws.law.pojo.DisscussExample" >
     select
     <if test="distinct" >
       distinct
@@ -94,21 +97,23 @@
     delete from disscuss
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.kgc.laws.law.pojo.disscussExample" >
+  <delete id="deleteByExample" parameterType="com.kgc.laws.law.pojo.DisscussExample" >
     delete from disscuss
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.kgc.laws.law.pojo.disscuss" >
+  <insert id="insert" parameterType="com.kgc.laws.law.pojo.Disscuss" >
     insert into disscuss (id, username, content, 
-      consulttime, userphone, relevantclause
+      consulttime, userphone, relevantclause, 
+      works, weixin, email
       )
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{consulttime,jdbcType=TIMESTAMP}, #{userphone,jdbcType=VARCHAR}, #{relevantclause,jdbcType=VARCHAR}
+      #{consulttime,jdbcType=TIMESTAMP}, #{userphone,jdbcType=VARCHAR}, #{relevantclause,jdbcType=VARCHAR}, 
+      #{works,jdbcType=VARCHAR}, #{weixin,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.kgc.laws.law.pojo.disscuss" >
+  <insert id="insertSelective" parameterType="com.kgc.laws.law.pojo.Disscuss" >
     insert into disscuss
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -128,6 +133,15 @@
       </if>
       <if test="relevantclause != null" >
         relevantclause,
+      </if>
+      <if test="works != null" >
+        works,
+      </if>
+      <if test="weixin != null" >
+        weixin,
+      </if>
+      <if test="email != null" >
+        email,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -149,9 +163,18 @@
       <if test="relevantclause != null" >
         #{relevantclause,jdbcType=VARCHAR},
       </if>
+      <if test="works != null" >
+        #{works,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null" >
+        #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.kgc.laws.law.pojo.disscussExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.kgc.laws.law.pojo.DisscussExample" resultType="java.lang.Integer" >
     select count(*) from disscuss
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -178,6 +201,15 @@
       <if test="record.relevantclause != null" >
         relevantclause = #{record.relevantclause,jdbcType=VARCHAR},
       </if>
+      <if test="record.works != null" >
+        works = #{record.works,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weixin != null" >
+        weixin = #{record.weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -190,12 +222,15 @@
       content = #{record.content,jdbcType=VARCHAR},
       consulttime = #{record.consulttime,jdbcType=TIMESTAMP},
       userphone = #{record.userphone,jdbcType=VARCHAR},
-      relevantclause = #{record.relevantclause,jdbcType=VARCHAR}
+      relevantclause = #{record.relevantclause,jdbcType=VARCHAR},
+      works = #{record.works,jdbcType=VARCHAR},
+      weixin = #{record.weixin,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.laws.law.pojo.disscuss" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.laws.law.pojo.Disscuss" >
     update disscuss
     <set >
       <if test="username != null" >
@@ -213,16 +248,28 @@
       <if test="relevantclause != null" >
         relevantclause = #{relevantclause,jdbcType=VARCHAR},
       </if>
+      <if test="works != null" >
+        works = #{works,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null" >
+        weixin = #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kgc.laws.law.pojo.disscuss" >
+  <update id="updateByPrimaryKey" parameterType="com.kgc.laws.law.pojo.Disscuss" >
     update disscuss
     set username = #{username,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
       consulttime = #{consulttime,jdbcType=TIMESTAMP},
       userphone = #{userphone,jdbcType=VARCHAR},
-      relevantclause = #{relevantclause,jdbcType=VARCHAR}
+      relevantclause = #{relevantclause,jdbcType=VARCHAR},
+      works = #{works,jdbcType=VARCHAR},
+      weixin = #{weixin,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

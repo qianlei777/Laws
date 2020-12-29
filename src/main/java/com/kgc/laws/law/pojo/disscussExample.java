@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class disscussExample {
+public class DisscussExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public disscussExample() {
+    public DisscussExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -502,6 +502,216 @@ public class disscussExample {
 
         public Criteria andRelevantclauseNotBetween(String value1, String value2) {
             addCriterion("relevantclause not between", value1, value2, "relevantclause");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorksIsNull() {
+            addCriterion("works is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorksIsNotNull() {
+            addCriterion("works is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorksEqualTo(String value) {
+            addCriterion("works =", value, "works");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorksNotEqualTo(String value) {
+            addCriterion("works <>", value, "works");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorksGreaterThan(String value) {
+            addCriterion("works >", value, "works");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorksGreaterThanOrEqualTo(String value) {
+            addCriterion("works >=", value, "works");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorksLessThan(String value) {
+            addCriterion("works <", value, "works");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorksLessThanOrEqualTo(String value) {
+            addCriterion("works <=", value, "works");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorksLike(String value) {
+            addCriterion("works like", value, "works");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorksNotLike(String value) {
+            addCriterion("works not like", value, "works");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorksIn(List<String> values) {
+            addCriterion("works in", values, "works");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorksNotIn(List<String> values) {
+            addCriterion("works not in", values, "works");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorksBetween(String value1, String value2) {
+            addCriterion("works between", value1, value2, "works");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorksNotBetween(String value1, String value2) {
+            addCriterion("works not between", value1, value2, "works");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeixinIsNull() {
+            addCriterion("weixin is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeixinIsNotNull() {
+            addCriterion("weixin is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeixinEqualTo(String value) {
+            addCriterion("weixin =", value, "weixin");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeixinNotEqualTo(String value) {
+            addCriterion("weixin <>", value, "weixin");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeixinGreaterThan(String value) {
+            addCriterion("weixin >", value, "weixin");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeixinGreaterThanOrEqualTo(String value) {
+            addCriterion("weixin >=", value, "weixin");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeixinLessThan(String value) {
+            addCriterion("weixin <", value, "weixin");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeixinLessThanOrEqualTo(String value) {
+            addCriterion("weixin <=", value, "weixin");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeixinLike(String value) {
+            addCriterion("weixin like", value, "weixin");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeixinNotLike(String value) {
+            addCriterion("weixin not like", value, "weixin");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeixinIn(List<String> values) {
+            addCriterion("weixin in", values, "weixin");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeixinNotIn(List<String> values) {
+            addCriterion("weixin not in", values, "weixin");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeixinBetween(String value1, String value2) {
+            addCriterion("weixin between", value1, value2, "weixin");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeixinNotBetween(String value1, String value2) {
+            addCriterion("weixin not between", value1, value2, "weixin");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailIsNull() {
+            addCriterion("email is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailIsNotNull() {
+            addCriterion("email is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailEqualTo(String value) {
+            addCriterion("email =", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailNotEqualTo(String value) {
+            addCriterion("email <>", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailGreaterThan(String value) {
+            addCriterion("email >", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailGreaterThanOrEqualTo(String value) {
+            addCriterion("email >=", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailLessThan(String value) {
+            addCriterion("email <", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailLessThanOrEqualTo(String value) {
+            addCriterion("email <=", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailLike(String value) {
+            addCriterion("email like", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailNotLike(String value) {
+            addCriterion("email not like", value, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailIn(List<String> values) {
+            addCriterion("email in", values, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailNotIn(List<String> values) {
+            addCriterion("email not in", values, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailBetween(String value1, String value2) {
+            addCriterion("email between", value1, value2, "email");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmailNotBetween(String value1, String value2) {
+            addCriterion("email not between", value1, value2, "email");
             return (Criteria) this;
         }
     }
