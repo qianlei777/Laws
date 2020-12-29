@@ -13,7 +13,7 @@
 <form action="addupdate" method="post">
     <input type="hidden" th:value="${la.id}" name="id">
 <p>法规部号：<input type="text" th:value="${la.lawsid}" name="lawsid" id="bu">*<span id="span1"></span></p>
-<p>法规别名：<input type="text" th:value="${la.lawstype}" name="lawstype"></p>
+<p>法规别名：<input type="text" th:value="${la.lawstype}" name="lawstype" id="f9"></p>
 <p>法规版本号：<input type="text" name="lawsversion" th:value="${la.lawsversion}"></p>
 <p>法规名称：<input type="text" name="lawsname" id="ming" th:value="${la.lawsname}">*<span id="span2"></span></p>
 <p>是否显示：<input type="radio" name="lawsshow" th:checked="${la.lawsshow==1}" value="1" id="ap">显示
@@ -26,6 +26,16 @@
 <script src="webjars/jquery/2.2.4/jquery.js"></script>
 <script type="text/javascript" th:src="@{/js/main.js}"></script>
 <script>
+    //别名长度判断
+    function bm() {
+        var numm=$("#f9").val();
+        if(numm.length>7){
+            var mm=numm.substring(0,7);
+            $("#f9").val("")
+            $("#f9").val(mm)
+        }
+    }
+    $("#f9").blur(bm)
     //是否显示非空验证
     function show() {
         var jj=$("input:radio:checked").val();

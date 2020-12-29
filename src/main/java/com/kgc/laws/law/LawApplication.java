@@ -10,5 +10,4 @@ public class LawApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LawApplication.class, args);
 	}
-
 }

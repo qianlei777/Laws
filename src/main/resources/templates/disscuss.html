@@ -46,8 +46,8 @@
 <h1>用户咨询列表</h1>
 <div>
     <form action="/getAllDisscuss" method="post">
-        用户联系方式：<input type="text" name="userphone" th:value="${userphone==null}?'手机号':${userphone}" th:reset>
-        咨询内容：<input type="text" name="content" th:value="${content==null}?'关键字':${content}" th:reset>
+        用户联系方式：<input type="text" name="userphone" th:placeholder="${userphone==null}?'手机号':${userphone}" th:reset>
+        咨询内容：<input type="text" name="content" th:placeholder="${content==null}?'关键字':${content}" th:reset>
         <button type="submit">查询</button>
     </form>
 </div>

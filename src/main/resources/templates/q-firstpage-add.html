@@ -14,11 +14,13 @@
         <div><a th:href="@{/allPage}">法规目录列表</a>&nbsp;&nbsp;&nbsp;<a th:href="@{/addFirstPage-html}" style="background-color: dodgerblue">添加顶级目录</a></div>
         <form th:action="@{/addFirstPage}" method="post">
             <p>
-                目录名称:<input type="text" name="pagename">
+                目录名称:<input type="text" name="pagename" id="f1">
+                <span id="span1"></span>
             </p>
             <hr>
             <p>
-                同级目录排序:<input type="text" name="pagesort">
+                同级目录排序:<input type="text" name="pagesort" id="f2">
+                <span id="span2"></span>
             </p>
             <hr>
             <p>
@@ -44,5 +46,54 @@
 
 <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
 <script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script>
+    //目录非空验证
+    function mulu() {
+        var name=$("#f1").val();
+        if(name==""){
+            $("#span1").html("请输入目录名称");
+            return false;
+        }else {
+             if(name.length>5){
+                 // alert("长度过长")
+                 var ss=name.substring(0,8);
+                 $("#span1").html("");
+                 $("#f1").val("");
+                 $("#f1").val(ss);
+            }else{
+            $("#span1").html("");
+            }
+        }
+    }
+    $("#f1").blur(mulu)
+    //同级目录目录排序数字验证
+    function tjmulu() {
+        var retNum=/^\d*$/;
+        var num=$("#f2").val();
+        if(num==""){
+            $("#span2").html("请输入同级目录");
+            return false;
+        }else {
+            if(retNum.test(num)){
+                $("#span2").html("");
+            }else{
+                $("#span2").html("同级目录排序，请输入数字");
+                return false;
+            }
+        }
+    }
+    //表单提交
+    $("form").submit(function () {
+        if(mulu()==false){
+            return false;
+        }
+        if(tjmulu()==false){
+            return false;
+        }
+        return true;
+    })
+
+
+</script>
 </body>
 </html>
