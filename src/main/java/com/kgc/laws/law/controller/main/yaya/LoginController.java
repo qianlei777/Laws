@@ -20,17 +20,16 @@ public class LoginController {
     LoginService loginService;
 
     @RequestMapping("login")
-    public String loginUsers(String userphone, String password, HttpSession session,Model model){
+    @ResponseBody
+    public String loginUsers(String userphone, String password, HttpSession session){
         Users users = loginService.getUsers(userphone, password);
         if (users!=null){
             session.setAttribute("user",users);
-            return "redirect:/getAllUser";
+            return "<script>location.href='/main'</script>";
         }else {
-            model.addAttribute("msg","登录名或验证码错误！！！");
-            return "html/login";
+            return "<script>alert('用户名或密码错误！！！');location.href='login.html'</script>";
         }
     }
-
 
     @RequestMapping("yanPhone")
     @ResponseBody

@@ -27,6 +27,16 @@
 table tr:first-child{
     width: 200px;
 }
+.child{
+    padding-left: 30px;
+}
+.addclause{
+    margin-right: 750px;
+}
+.clauseinfo{
+    margin-right: 500px;
+}
+
 .child2{
     padding-left: 30px;
 }
@@ -115,3 +125,14 @@ display: inline-block;
     position: relative;
     right: 0px;
 }
+#gologin{
+    cursor: pointer;
+}
+.foot{
+    display: inline-block;
+    width: 500px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
