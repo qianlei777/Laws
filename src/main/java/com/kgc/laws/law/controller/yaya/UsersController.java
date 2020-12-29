@@ -1,6 +1,7 @@
 package com.kgc.laws.law.controller.yaya;
 
 import com.github.pagehelper.PageInfo;
+import com.kgc.laws.law.pojo.Admin;
 import com.kgc.laws.law.pojo.Users;
 import com.kgc.laws.law.service.users.GetUsers.UsersService;
 import org.springframework.stereotype.Controller;
@@ -9,11 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class UsersController {
     @Resource
     UsersService usersService;
+
 
     @RequestMapping("getAllUser")
     public String getAllUsers(String phone,Integer pageNum, Model model){
@@ -40,5 +43,17 @@ public class UsersController {
             flag="true";
         }
         return flag;
+    }
+
+    @RequestMapping("AdminLogin")
+    public String getAdmin(String phone, String password, HttpSession session,Model model){
+        Admin admin = usersService.getAdmin(phone, password);
+        if (admin!=null){
+            session.setAttribute("admin",admin);
+            return "users";
+        }else {
+            model.addAttribute("msg","用户名或密码错误！！！");
+            return "adminLogin";
+        }
     }
 }

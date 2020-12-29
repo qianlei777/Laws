@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.kgc.laws.law.mapper.PageMapper" >
-  <resultMap id="BaseResultMap" type="com.kgc.laws.law.pojo.Page" >
+<mapper namespace="com.kgc.laws.law.mapper.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.kgc.laws.law.pojo.Admin" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="pagename" property="pagename" jdbcType="VARCHAR" />
-    <result column="pagelevel" property="pagelevel" jdbcType="INTEGER" />
-    <result column="pageparent" property="pageparent" jdbcType="INTEGER" />
-    <result column="lawsid" property="lawsid" jdbcType="INTEGER" />
-    <result column="pagesort" property="pagesort" jdbcType="INTEGER" />
-    <collection property="clauses" column="id" select="com.kgc.laws.law.mapper.ClauseMapper.getClauseByPageId"></collection>
+    <result column="aname" property="aname" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="adddata" property="adddata" jdbcType="TIMESTAMP" />
+    <result column="role" property="role" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,15 +69,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, pagename, pagelevel, pageparent, lawsid, pagesort
+    id, aname, phone, password, adddata, role, remark
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.laws.law.pojo.PageExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.laws.law.pojo.AdminExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from page
+    from admin
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,96 +88,105 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from page
+    from admin
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from page
+    delete from admin
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.kgc.laws.law.pojo.PageExample" >
-    delete from page
+  <delete id="deleteByExample" parameterType="com.kgc.laws.law.pojo.AdminExample" >
+    delete from admin
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.kgc.laws.law.pojo.Page" >
-    insert into page (id, pagename, pagelevel, 
-      pageparent, lawsid, pagesort
-      )
-    values (#{id,jdbcType=INTEGER}, #{pagename,jdbcType=VARCHAR}, #{pagelevel,jdbcType=INTEGER}, 
-      #{pageparent,jdbcType=INTEGER}, #{lawsid,jdbcType=INTEGER}, #{pagesort,jdbcType=INTEGER}
-      )
+  <insert id="insert" parameterType="com.kgc.laws.law.pojo.Admin" >
+    insert into admin (id, aname, phone, 
+      password, adddata, role, 
+      remark)
+    values (#{id,jdbcType=INTEGER}, #{aname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{adddata,jdbcType=TIMESTAMP}, #{role,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.kgc.laws.law.pojo.Page" >
-    insert into page
+  <insert id="insertSelective" parameterType="com.kgc.laws.law.pojo.Admin" >
+    insert into admin
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="pagename != null" >
-        pagename,
+      <if test="aname != null" >
+        aname,
       </if>
-      <if test="pagelevel != null" >
-        pagelevel,
+      <if test="phone != null" >
+        phone,
       </if>
-      <if test="pageparent != null" >
-        pageparent,
+      <if test="password != null" >
+        password,
       </if>
-      <if test="lawsid != null" >
-        lawsid,
+      <if test="adddata != null" >
+        adddata,
       </if>
-      <if test="pagesort != null" >
-        pagesort,
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="remark != null" >
+        remark,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="pagename != null" >
-        #{pagename,jdbcType=VARCHAR},
+      <if test="aname != null" >
+        #{aname,jdbcType=VARCHAR},
       </if>
-      <if test="pagelevel != null" >
-        #{pagelevel,jdbcType=INTEGER},
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="pageparent != null" >
-        #{pageparent,jdbcType=INTEGER},
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
       </if>
-      <if test="lawsid != null" >
-        #{lawsid,jdbcType=INTEGER},
+      <if test="adddata != null" >
+        #{adddata,jdbcType=TIMESTAMP},
       </if>
-      <if test="pagesort != null" >
-        #{pagesort,jdbcType=INTEGER},
+      <if test="role != null" >
+        #{role,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.kgc.laws.law.pojo.PageExample" resultType="java.lang.Integer" >
-    select count(*) from page
+  <select id="countByExample" parameterType="com.kgc.laws.law.pojo.AdminExample" resultType="java.lang.Integer" >
+    select count(*) from admin
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update page
+    update admin
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.pagename != null" >
-        pagename = #{record.pagename,jdbcType=VARCHAR},
+      <if test="record.aname != null" >
+        aname = #{record.aname,jdbcType=VARCHAR},
       </if>
-      <if test="record.pagelevel != null" >
-        pagelevel = #{record.pagelevel,jdbcType=INTEGER},
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
       </if>
-      <if test="record.pageparent != null" >
-        pageparent = #{record.pageparent,jdbcType=INTEGER},
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.lawsid != null" >
-        lawsid = #{record.lawsid,jdbcType=INTEGER},
+      <if test="record.adddata != null" >
+        adddata = #{record.adddata,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.pagesort != null" >
-        pagesort = #{record.pagesort,jdbcType=INTEGER},
+      <if test="record.role != null" >
+        role = #{record.role,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -185,48 +194,50 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update page
+    update admin
     set id = #{record.id,jdbcType=INTEGER},
-      pagename = #{record.pagename,jdbcType=VARCHAR},
-      pagelevel = #{record.pagelevel,jdbcType=INTEGER},
-      pageparent = #{record.pageparent,jdbcType=INTEGER},
-      lawsid = #{record.lawsid,jdbcType=INTEGER},
-      pagesort = #{record.pagesort,jdbcType=INTEGER}
+      aname = #{record.aname,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      adddata = #{record.adddata,jdbcType=TIMESTAMP},
+      role = #{record.role,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.laws.law.pojo.Page" >
-    update page
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.laws.law.pojo.Admin" >
+    update admin
     <set >
-      <if test="pagename != null" >
-        pagename = #{pagename,jdbcType=VARCHAR},
+      <if test="aname != null" >
+        aname = #{aname,jdbcType=VARCHAR},
       </if>
-      <if test="pagelevel != null" >
-        pagelevel = #{pagelevel,jdbcType=INTEGER},
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="pageparent != null" >
-        pageparent = #{pageparent,jdbcType=INTEGER},
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="lawsid != null" >
-        lawsid = #{lawsid,jdbcType=INTEGER},
+      <if test="adddata != null" >
+        adddata = #{adddata,jdbcType=TIMESTAMP},
       </if>
-      <if test="pagesort != null" >
-        pagesort = #{pagesort,jdbcType=INTEGER},
+      <if test="role != null" >
+        role = #{role,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kgc.laws.law.pojo.Page" >
-    update page
-    set pagename = #{pagename,jdbcType=VARCHAR},
-      pagelevel = #{pagelevel,jdbcType=INTEGER},
-      pageparent = #{pageparent,jdbcType=INTEGER},
-      lawsid = #{lawsid,jdbcType=INTEGER},
-      pagesort = #{pagesort,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.kgc.laws.law.pojo.Admin" >
+    update admin
+    set aname = #{aname,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      adddata = #{adddata,jdbcType=TIMESTAMP},
+      role = #{role,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectPageByLawsId" resultMap="BaseResultMap">
-    SELECT * FROM page where lawsid = #{VALUE}
-  </select>
 </mapper>

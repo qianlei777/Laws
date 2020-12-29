@@ -28,4 +28,6 @@ public interface ClauseMapper {
     int updateByPrimaryKeySelective(Clause record);
 
     int updateByPrimaryKey(Clause record);
+
+    List<Clause>getClauseByPageId(Integer id);
 }

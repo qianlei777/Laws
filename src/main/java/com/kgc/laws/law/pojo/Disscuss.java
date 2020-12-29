@@ -2,7 +2,7 @@ package com.kgc.laws.law.pojo;
 
 import java.util.Date;
 
-public class disscuss {
+public class Disscuss {
     private Integer id;
 
     private String username;
@@ -14,6 +14,12 @@ public class disscuss {
     private String userphone;
 
     private String relevantclause;
+
+    private String works;
+
+    private String weixin;
+
+    private String email;
 
     public Integer getId() {
         return id;
@@ -61,5 +67,29 @@ public class disscuss {
 
     public void setRelevantclause(String relevantclause) {
         this.relevantclause = relevantclause == null ? null : relevantclause.trim();
+    }
+
+    public String getWorks() {
+        return works;
+    }
+
+    public void setWorks(String works) {
+        this.works = works == null ? null : works.trim();
+    }
+
+    public String getWeixin() {
+        return weixin;
+    }
+
+    public void setWeixin(String weixin) {
+        this.weixin = weixin == null ? null : weixin.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 }

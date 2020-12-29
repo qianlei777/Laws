@@ -273,4 +273,7 @@
       keyword = #{keyword,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getClauseByPageId" resultMap="BaseResultMap">
+    SELECT  * FROM clause where pageid = #{VALUE}
+  </select>
 </mapper>
