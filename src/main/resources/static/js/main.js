@@ -8,10 +8,6 @@
     $("#disscuss h3").click(function () {
         $(this).next().toggle();
     })
-    function child(id) {
-        alert("123")
-        $("#child"+id).toggle();
-    }
 
 
 
