@@ -15,11 +15,13 @@
             <p>
                 <input type="text" hidden th:value="${num!=null}?${nextPage.id}" name="id">
                 <input name="_method" value="put" th:if="${num!=null}" type="hidden">
-                目录名称:<input type="text" name="pagename" th:value="${num!=null}?${nextPage.pagename}">
+                目录名称:<input type="text" id="f1" name="pagename" th:value="${num!=null}?${nextPage.pagename}" >
+                <span id="span1"></span>
             </p>
             <hr>
             <p>
-                同级目录排序:<input type="text" name="pagesort" th:value="${num!=null}?${nextPage.pagesort}:(${nextPage.childpage==null}?'1':${nextPage.childpage.size()+1})">
+                同级目录排序:<input type="text" id="f2" name="pagesort" th:value="${num!=null}?${nextPage.pagesort}:(${nextPage.childpage==null}?'1':${nextPage.childpage.size()+1})" >
+                <span id="span2"></span>
             </p>
             <hr>
             <p>
@@ -41,7 +43,57 @@
         </form>
     </div>
 </div>
-<script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+<script src="webjars/jquery/2.2.4/jquery.js"></script>
 <script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script>
+    //判断目录是否为空和长度限制
+    function mulu() {
+        var name = $("#f1").val();
+        if (name == "") {
+            $("#span1").html("请输入目录名称");
+            return false;
+        } else {
+                $("#span1").html("");
+            if (name.length > 5) {
+                $("#span1").html("");
+                var ss = name.substring(0, 5);
+                $("#f1").val("");
+                $("#f1").val(ss);
+            }
+            }
+
+    }
+    $("#f1").blur(mulu)
+
+        //同级目录目录排序数字验证
+    function tjlu() {
+            var retNum=/^\d*$/;
+            var num=$("#f2").val();
+            if(num==""){
+                $("#span2").html("请输入同级目录排序");
+                return false;
+            }
+            else {
+                if(retNum.test(num)){
+                    $("#span2").html("");
+                }else{
+                    $("#span2").html("同级目录排序，请输入数字");
+                    return false;
+                }
+            }
+
+    }
+    $("#f2").blur(tjlu)
+    //表单提交
+    $("form").submit(function () {
+        if(mulu()==false){
+            return false;
+        }
+        if(tjlu()==false){
+            return false;
+        }
+        return true;
+    })
+</script>
 </body>
 </html>
