@@ -27,6 +27,16 @@
 table tr:first-child{
     width: 200px;
 }
+.child{
+    padding-left: 30px;
+}
+.addclause{
+    margin-right: 750px;
+}
+.clauseinfo{
+    margin-right: 500px;
+}
+
 .child2{
     padding-left: 30px;
 }

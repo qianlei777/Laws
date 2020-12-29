@@ -19,7 +19,9 @@ import java.util.List;
  */
 
 @Controller
-public class MyController {
+
+public class ClauseController {
+
     @Resource
     ClauseService clauseService;
 
@@ -46,14 +48,14 @@ public class MyController {
         model.addAttribute("pageNum", pageNum);
         model.addAttribute("clauseid", clauseid);
         model.addAttribute("like", like);
-        return "clause-info";
+        return "d-clauseinfo";
     }
 
     @RequestMapping("/toaddClause")
     public String toadd(Model model) {
         List<Laws> lawsAll = lawsService.getLawsAll();
         model.addAttribute("laws", lawsAll);
-        return "addClause";
+        return "d-addClause";
     }
 
 
@@ -73,7 +75,7 @@ public class MyController {
         model.addAttribute("clause", clause);
         List<Laws> lawsAll = lawsService.getLawsAll();
         model.addAttribute("laws", lawsAll);
-        return "updateClause";
+        return "d-updateClause";
     }
 
     @RequestMapping("/updataClause")

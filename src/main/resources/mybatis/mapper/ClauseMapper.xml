@@ -13,6 +13,7 @@
     <result column="keyword" property="keyword" jdbcType="VARCHAR" />
     <association property="laws" column="lawid" select="com.kgc.laws.law.mapper.LawsMapper.selectByLawsid"></association>
   </resultMap>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

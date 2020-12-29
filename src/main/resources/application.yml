@@ -1,8 +1,10 @@
+
+
 spring:
   datasource:
     username: root
-    password: 5211314
-    url: jdbc:mysql://localhost:3306/law?serverTimezone=UTC
+    password: root
+    url: jdbc:mysql://localhost:3306/laws?serverTimezone=UTC
     driver-class-name: com.mysql.jdbc.Driver
 #   数据源其他配置
     initialSize: 5
@@ -40,3 +42,6 @@ mybatis:
    offset-as-page-num: true
    row-bounds-with-count: true
    page-size-zero: true
+
+
+
