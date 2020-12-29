@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div>
+    <input th:value="${session.user!=null}?${session.user.username}:''" hidden id="username">
+    <p th:each="value:${parent}" th:text="${value.value.id==clause.pageid}?${value.value.pagename}:${value.value.pagename}+'>'" class="onlypage"></p>
+</div>
+<div id="ccontent">
+    <p th:text="'第'+${clause.clauseid}+'条'" class="onlypage"></p>
+    <p class="onlypage"><span th:class="${allFav!=null && allFav.contains(clause)?'like cs':'like'}">&#9733;</span>收藏</p>
+    <p th:text="${clause.ccontent}"></p>
+</div>
+<div class="refer" onclick="disscuss()">立即咨询</div>
+<section>
+    <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+    <script type="text/javascript">
+      function disscuss() {
+          location.href='/godisscuss';
+      }
+      $(".like").click(function () {
+          var name = $("#username").val();
+          if(name==null||name==""){
+              var flag = confirm("您当前还没有登录");
+              if(flag){
+                  location.href = "/login.html";
+              }else{
+                  location.href = "/login.html";
+              }
+          }else{
+              $(this).toggleClass('cs');
+          }
+      })
+    </script>
+</section>
+</body>
+</html>
