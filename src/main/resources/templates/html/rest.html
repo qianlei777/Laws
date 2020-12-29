@@ -8,14 +8,36 @@
 <body>
 <form action="/addUsers" method="post">
     <p><input type="text" name="username" placeholder="请输入真实姓名">
-        <input type="radio" name="sex" value="1" placeholder="男" th:selected>
-        <input type="radio" name="sex" value="2" placeholder="女"></p>
-    <p><input type="text" name="userphone" placeholder="手机号"></p>
-    <p><input type="text" placeholder="请输入验证码"><a href="#">发送验证码</a></p>
+        <input type="radio" name="sex" value="1">男
+        <input type="radio" name="sex" value="2">女</p>
+    <p><input type="text" name="userphone" placeholder="手机号" id="phone"></p>
+    <p><input type="text" placeholder="请输入验证码" id="yan"><button type="button" onclick="fs()">发送验证码</button></p>
     <p><input type="password" name="password" placeholder="密码设置6-20位字符，区分大小写"></p>
     <P><input type="password" name="quepwd" placeholder="请再次输入密码"></P>
     <p><button type="submit">注册</button></p>
     <p><button><a href="login.html">登录</a></button></p>
 </form>
 </body>
+<script>
+    $(function () {
+        function fs() {
+            var phone = $("#phone").val();
+            $.get("/phoneYan", {"phone": phone}, function (flag) {
+                if (flag ==="1") {
+                    alert("验证码已发送");
+                }
+            })
+        }
+        $("#yan").blur(function () {
+            var yzm=$("#yan").val();
+            $.get("/YanYan",{"yzm":yzm},function (flag) {
+                if(flag==="false"){
+                    $("#yan").val("");
+                }
+            })
+        })
+    })
+
+
+</script>
 </html>

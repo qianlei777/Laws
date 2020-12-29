@@ -18,7 +18,7 @@ public class UsersController {
     UsersService usersService;
 
 
-    @RequestMapping("getAllUser")
+    @RequestMapping("/getAllUser")
     public String getAllUsers(String phone,Integer pageNum, Model model){
         if (pageNum==null){
             pageNum=1;
@@ -50,7 +50,7 @@ public class UsersController {
         Admin admin = usersService.getAdmin(phone, password);
         if (admin!=null){
             session.setAttribute("admin",admin);
-            return "users";
+            return "redirect:/getAllUser";
         }else {
             model.addAttribute("msg","用户名或密码错误！！！");
             return "adminLogin";
