@@ -7,11 +7,12 @@
 </head>
 <body>
 <div>
+    <input th:value="${session.user!=null}?${session.user.username}:''" hidden id="username">
     <p th:each="value:${parent}" th:text="${value.value.id==clause.pageid}?${value.value.pagename}:${value.value.pagename}+'>'" class="onlypage"></p>
 </div>
 <div id="ccontent">
     <p th:text="'第'+${clause.clauseid}+'条'" class="onlypage"></p>
-    <p class="onlypage"><span class="like">&#9733;</span>收藏</p>
+    <p class="onlypage"><span th:class="${allFav!=null && allFav.contains(clause)?'like cs':'like'}">&#9733;</span>收藏</p>
     <p th:text="${clause.ccontent}"></p>
 </div>
 <div class="refer" onclick="disscuss()">立即咨询</div>
@@ -22,7 +23,17 @@
           location.href='/godisscuss';
       }
       $(".like").click(function () {
-          $(this).toggleClass('cs');
+          var name = $("#username").val();
+          if(name==null||name==""){
+              var flag = confirm("您当前还没有登录");
+              if(flag){
+                  location.href = "/login.html";
+              }else{
+                  location.href = "/login.html";
+              }
+          }else{
+              $(this).toggleClass('cs');
+          }
       })
     </script>
 </section>

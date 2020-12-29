@@ -7,6 +7,16 @@ public class Favorite {
 
     private String clauseid;
 
+    private Clause clause;
+
+    public Clause getClause() {
+        return clause;
+    }
+
+    public void setClause(Clause clause) {
+        this.clause = clause;
+    }
+
     public Integer getId() {
         return id;
     }

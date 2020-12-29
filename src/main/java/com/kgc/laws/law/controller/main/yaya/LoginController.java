@@ -21,7 +21,7 @@ public class LoginController {
         Users users = loginService.getUsers(userphone, password);
         if (users!=null){
             session.setAttribute("user",users);
-            return "users";
+            return "<script>location.href='/main'</script>";
         }else {
             return "<script>alert('用户名或密码错误！！！');location.href='login.html'</script>";
         }

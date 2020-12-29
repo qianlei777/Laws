@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="uid" property="uid" jdbcType="INTEGER" />
     <result column="clauseid" property="clauseid" jdbcType="VARCHAR" />
+    <association property="clause" column="clauseid" select="com.kgc.laws.law.mapper.ClauseMapper.selectByPrimaryKey"></association>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >

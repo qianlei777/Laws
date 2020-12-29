@@ -15,13 +15,15 @@
             </div>
         </div>
     </div>
-    <p class="more">我的收藏<a href="">更多></a></p>
+    <p class="more">我的收藏<a th:href="${session.user!=null}?@{user}:@{/login.html}">更多></a></p>
     <div id="favorite">
         <hr/>
-        <h2 style="text-align: center">暂无收藏记录</h2>
+        <h2 style="text-align: center" th:if="${allFav==null || allFav.size()==0}">暂无收藏记录</h2>
+        <p th:if="${allFav!=null || allFav.size()!=0}" th:each="fav:${allFav}"><a th:href="@{/oneClause(id=${fav.id})}"><b th:text="${fav.clause.clauseid}"></b>&nbsp;&nbsp;<span th:text="${fav.clause.title}"></span></a></p>
         <hr>
     </div>
 </div>
+<th:block th:include="~{common::footer}"></th:block>
 <section>
     <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
     <script type="text/javascript">
