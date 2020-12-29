@@ -51,8 +51,8 @@
             if(retNum.test(name)){
                 $("#span1").html("");
                 //超出100位截取前一百位
-                if(name.length>100){
-                    var str=name.substring(0, 101);
+                if(name.length>10){
+                    var str=name.substring(0, 10);
                     $("#bu").val("");
                     $("#bu").val(str);
                 }
@@ -71,14 +71,15 @@
             $("#span2").html("请输入法规名称");
             return false;
         }else {
-            if(nam.length>100){
-                var nu=nam.substring(0,101);
+            if(nam.length>10){
+                var nu=nam.substring(0,10);
                 $("#ming").val("");
                 $("#ming").val(nu);
             }
             $("#span2").html("");
         }
     }
+    $("#ming").blur(ming)
     //增加法规提交
     $("form").submit(function () {
         if(bu()==false){

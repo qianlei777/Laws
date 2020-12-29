@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+</head>
+<body>
+<div>
+    <p th:text="${msg}"></p>
+    <p id="shouji"></p>
+    <p id="mima"></p>
+</div>
+<h1>航多知识管理系统</h1>
+<form action="/AdminLogin" method="post">
+    <p>
+        登录名<br>
+        <input type="text" name="phone" id="phone"></p>
+    <p>
+        密码<br>
+        <input type="password" name="password" id="password">
+    </p>
+    <p><button type="submit">登录</button></p>
+</form>
+</body>
+<script>
+    $(function () {
+
+            $("#phone").blur(function () {
+                $("#shouji").html("");
+                var phone = $("#phone").val();
+                if (phone==null||phone===""){
+                    $("#shouji").html("登录名不可为空！！！");
+                }
+            });
+
+  /*          $("#phone").focus(function () {
+                $("#shouji").html("");
+            });
+*/
+
+            $("#password").blur(function () {
+                $("#mima").html("");
+                var password = $("#password").val();
+                if (password==null||password===""){
+                    $("#mima").html("密码不可为空！！！");
+                }
+            });
+     /*       $("#password").focus(function () {
+                $("#shouji").remove();
+            });*/
+
+    })
+</script>
+</html>
