@@ -25,6 +25,22 @@
     </div>
 </div>
 
+<!--系统设置的left-->
+<div id="sett" th:fragment="settings">
+    <div>设置</div>
+
+    <div class="xia">
+        <p><a >网站设置</a></p>
+        <p><a >公司介绍</a></p>
+        <p><a >服务协议</a></p>
+        <p><a >邮件SMTP设置</a></p>
+        <p><a >短信设置</a></p>
+        <p><a th:class="${active=='page'?'active':''}" th:href="@{/AdminInfo}">管理员管理</a></p>
+        <p><a >意见反馈列表</a></p>
+        <p>条款列表</p>
+    </div>
+</div>
+
 <div th:fragment="footer" class="footer">
     <div class="foot">
         <span></span>

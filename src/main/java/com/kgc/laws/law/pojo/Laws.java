@@ -21,16 +21,16 @@ public class Laws {
 
     private List<Page> pages;
 
-    public List<Page> getPages() {
-        return pages;
-    }
-
     public Integer getLawsshow() {
         return lawsshow;
     }
 
     public void setLawsshow(Integer lawsshow) {
         this.lawsshow = lawsshow;
+    }
+
+    public List<Page> getPages() {
+        return pages;
     }
 
     public void setPages(List<Page> pages) {
