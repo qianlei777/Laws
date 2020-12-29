@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div id="maintitle">
+    <p class="daohang">法规目录</p>
+    <p class="daohang">版本及下载</p>
+</div>
+<div id="page">
+    <th:block th:fragment="mulu(allpage)">
+        <th:block th:each="parent:${allpage}">
+                <p th:text="${parent.pagename}"  th:class="'child'+${parent.pagelevel}"></p>
+            <p th:if="${parent.clauses!=null||parent.clauses.size()>0}" th:each="clause:${parent.clauses}"><b th:text="'第'+${clause.clauseid}+'条 '"></b><a th:text="${clause.title}" th:href="@{/oneClause(id=${clause.id})}"></a></p>
+            <th:block th:if="${parent.childpage!=null}" th:include="this::mulu(${parent.childpage})"></th:block>
+        </th:block>
+    </th:block>
+</div>
+</body>
+</html>

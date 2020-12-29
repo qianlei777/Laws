@@ -2,10 +2,7 @@ package com.kgc.laws.law.utils;
 
 import com.kgc.laws.law.pojo.Page;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class PageUtils{
 
@@ -26,6 +23,7 @@ public class PageUtils{
         }
         return sortList(childList);
     }
+    //根据同级排序
     public static List<Page> sortList(List<Page> list){
         Collections.sort(list, new Comparator<Object>()
         {
@@ -43,6 +41,21 @@ public class PageUtils{
             }
         });
         return list;
+    }
+    //获取条款所在的目录及父级目录
+    public static TreeMap<Integer,Page> getParent(Integer id,List<Page> allPage,TreeMap<Integer,Page>treeMap){
+        for (Page page : allPage) {
+            if(page.getId()==id){
+                treeMap.put(page.getPagelevel(),page);
+                if (page.getPageparent()==0){
+                    break;
+                }else{
+                    getParent(page.getPageparent(),allPage,treeMap);
+                    break;
+                }
+            }
+        }
+        return treeMap;
     }
 
 }

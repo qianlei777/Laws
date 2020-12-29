@@ -57,7 +57,6 @@ public class PageController {
                 allPage.add(page);
             }
         }
-
         model.addAttribute("allPage",allPage);
         model.addAttribute("allLaws",allLaw);
         return "q-allpage";

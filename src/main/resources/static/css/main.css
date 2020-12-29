@@ -3,7 +3,7 @@
     float: right;
     display: inline-block;
 }
-#main,#bar,h1{
+#main,#bar,h1,.daohang{
     display: inline-block;
 }
 .xiala{
@@ -15,8 +15,8 @@
 .firstpage{
     margin-right: 955px;
 }
-.allpage{
-    margin-right: 650px;
+.allPage{
+    margin-right: 950px;
 }
 .active{
     color: blue;
@@ -48,4 +48,80 @@ table tr:first-child{
 }
 .yewu{
     background-color: aqua;
+}
+.fenlei div div{
+    width: 90px;
+    height: 90px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    font-size: 38px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    background-color: lightcyan;
+    cursor: pointer;
+}
+#maintitle p:nth-child(1){
+    margin-right: 800px;
+}
+#maintype .fenlei{
+display: inline-block;
+}
+.refer{
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    font-size: 30px;
+    background-color: blue;
+    color: white;
+    position:fixed;
+    right:0px;
+    _position:absolute;
+    bottom:0px;
+    border-top:1px solid #fff;
+    display:block;
+    width:100%;
+    height: 50px;
+    cursor: pointer;
+}
+.tijiao{
+    color: white;
+    font-size: 30px;
+    width: 300px;
+    height: 50px;
+    background-color: blue;
+    width: 200px;
+    height: 50px;
+}
+.textbox{
+    width: 500px;
+    height: 70px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+}
+#disform{
+    vertical-align: middle;
+}
+.textbox::placeholder{
+    font-size: 18px;
+}
+.onlypage{
+    display: inline-block;
+}
+#ccontent p:nth-child(2){
+    float: right;
+    margin-right: 200px;
+}
+.like{
+    font-size:25px;
+    margin:5px;
+    color:#ccc; cursor:pointer;
+}
+.cs{
+    color:#f00;
+}
+.more{
+    position: relative;
+    right: 0px;
 }
