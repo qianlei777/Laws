@@ -2,9 +2,10 @@ package com.kgc.laws.law.service.zixun.GetDisscuss.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.kgc.laws.law.mapper.disscussMapper;
-import com.kgc.laws.law.pojo.disscuss;
-import com.kgc.laws.law.pojo.disscussExample;
+import com.kgc.laws.law.mapper.DisscussMapper;
+import com.kgc.laws.law.mapper.DisscussMapper;
+import com.kgc.laws.law.pojo.Disscuss;
+import com.kgc.laws.law.pojo.DisscussExample;
 import com.kgc.laws.law.service.zixun.GetDisscuss.DiscussService;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +16,11 @@ import java.util.List;
 public class DisscussServiceImpl implements DiscussService {
 
     @Resource
-    disscussMapper disscussMapper;
+    DisscussMapper disscussMapper;
     @Override
-    public PageInfo<disscuss> getAllDisscuss(String phone, String content, Integer pageNum, Integer pageSize) {
-        disscussExample example=new disscussExample();
-        disscussExample example1=new disscussExample();
+    public PageInfo<Disscuss> getAllDisscuss(String phone, String content, Integer pageNum, Integer pageSize) {
+        DisscussExample example=new DisscussExample();
+        DisscussExample example1=new DisscussExample();
         PageHelper.startPage(pageNum,pageSize);
         PageHelper.orderBy("consulttime desc");
         if (phone!=null&&content==""){
@@ -32,12 +33,12 @@ public class DisscussServiceImpl implements DiscussService {
             content="%"+content+"%";
             phone="%"+phone+"%";
             example.createCriteria().andUserphoneLike(phone);
-            disscussExample.Criteria criteria = example1.createCriteria().andContentLike(content);
+            DisscussExample.Criteria criteria = example1.createCriteria().andContentLike(content);
             example.or(criteria);
         }
-        List<disscuss> disscussList=disscussMapper.selectByExample(example);
-        PageInfo<disscuss> disscussPageInfo=new PageInfo<>(disscussList);
-        return disscussPageInfo;
+        List<Disscuss> DisscussList=disscussMapper.selectByExample(example);
+        PageInfo<Disscuss> DisscussPageInfo=new PageInfo<>(DisscussList);
+        return DisscussPageInfo;
     }
 
     @Override
@@ -46,8 +47,8 @@ public class DisscussServiceImpl implements DiscussService {
     }
 
     @Override
-    public disscuss getDisscussById(Integer id) {
-        disscuss disscuss = disscussMapper.selectByPrimaryKey(id);
-        return disscuss;
+    public Disscuss getDisscussById(Integer id) {
+        Disscuss Disscuss = disscussMapper.selectByPrimaryKey(id);
+        return Disscuss;
     }
 }

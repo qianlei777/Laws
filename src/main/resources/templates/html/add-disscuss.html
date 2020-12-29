@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div>
+    <p>请留下您的联系方式和咨询问题</p>
+    <p>我们会安排专业的顾问跟您联系</p>
+</div>
+<div id="disform">
+    <form method="post">
+        <p>
+            <span></span>
+            <input type="text" placeholder="请输入姓名,不超过十个字" name="" class="textbox">
+        <hr/>
+        </p>
+        <p>
+            <span></span>
+            <input type="text" placeholder="请输入手机号码" name="" class="textbox">
+        <hr/>
+        </p>
+        <p>
+            <span></span>
+            <input type="text" placeholder="工作单位" name="" class="textbox">
+        <hr/>
+        </p>
+        <p>
+            <span></span>
+            <input type="text" placeholder="邮箱" name="" class="textbox">
+        <hr/>
+        </p>
+        <p>
+            <span></span>
+            <input type="text" placeholder="微信号" name="" class="textbox">
+        <hr/>
+        </p>
+        <p>
+            <span></span>
+            <input type="text" placeholder="请输入相关条款号" name="" class="textbox">
+        <hr>
+        </p>
+        <p style="text-align: center;color:blue">-问题描述-</p>
+        <p>
+            <textarea cols="90" rows="12" placeholder="字数限制30-500之间(必填)" name="">
+
+            </textarea>
+        </p>
+        <p>
+            <input type="checkbox" name="">&nbsp;&nbsp;我已阅读并同意<span style="color: blue">《服务协议》</span>
+        </p>
+        <p>
+            <button type="submit" class="tijiao">提交</button>
+        </p>
+    </form>
+</div>
+<section>
+    <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+    <script type="text/javascript">
+
+    </script>
+</section>
+</body>
+</html>

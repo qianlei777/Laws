@@ -8,6 +8,7 @@
     <result column="pageparent" property="pageparent" jdbcType="INTEGER" />
     <result column="lawsid" property="lawsid" jdbcType="INTEGER" />
     <result column="pagesort" property="pagesort" jdbcType="INTEGER" />
+    <collection property="clauses" column="id" select="com.kgc.laws.law.mapper.ClauseMapper.getClauseByPageId"></collection>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
