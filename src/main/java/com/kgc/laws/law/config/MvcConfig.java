@@ -12,5 +12,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("adminLogin.html").setViewName("adminLogin");
         registry.addViewController("rest.html").setViewName("html/rest");
         registry.addViewController("myself.html").setViewName("html/myself");
+        registry.addViewController("gaiPhone.html").setViewName("html/gaiPhone");
+        registry.addViewController("gaiPassword.html").setViewName("html/gaiPassword");
     }
 }

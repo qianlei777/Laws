@@ -8,6 +8,7 @@
 <body>
 <div>
     <input th:value="${session.user!=null}?${session.user.username}:''" hidden id="username">
+    <input hidden th:value="${clause.id}" name="id"/>
     <p th:each="value:${parent}" th:text="${value.value.id==clause.pageid}?${value.value.pagename}:${value.value.pagename}+'>'" class="onlypage"></p>
 </div>
 <div id="ccontent">
@@ -33,6 +34,10 @@
               }
           }else{
               $(this).toggleClass('cs');
+              var id=$("[name='id']").val();
+              $.get("/addFavorite",{"clauseid":id},function (flag) {
+
+              });
           }
       })
     </script>

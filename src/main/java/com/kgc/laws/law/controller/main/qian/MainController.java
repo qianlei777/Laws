@@ -9,6 +9,7 @@ import com.kgc.laws.law.service.qian.impl.FavoriteServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -81,5 +82,18 @@ public class MainController {
     @RequestMapping("/godisscuss")
     public String goDisscuss(){
         return "html/add-disscuss";
+    }
+
+    @RequestMapping("/addFavorite")
+    @ResponseBody
+    public String addFavorite(Favorite favorite,HttpSession session){
+        String flag="false";
+        Users user = (Users) session.getAttribute("user");
+        favorite.setUid(user.getId());
+        int i = favoriteService.addFavorite(favorite);
+        if (i>0){
+            flag="true";
+        }
+        return flag;
     }
 }

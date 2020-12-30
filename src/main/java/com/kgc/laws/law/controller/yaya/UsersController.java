@@ -56,4 +56,31 @@ public class UsersController {
             return "adminLogin";
         }
     }
+
+    @RequestMapping("phoneGai")
+    @ResponseBody
+    public String phoneGai(Users users){
+        String flag="false";
+        int i = usersService.updateUsers(users);
+        if (i>0){
+            flag="true";
+        }
+        return flag;
+    }
+    @RequestMapping("/miGai")
+    @ResponseBody
+    public String miGai(Users users){
+        String flag="false";
+        int i = usersService.updateUsers(users);
+        if (i>0){
+            flag="true";
+        }
+        return flag;
+    }
+
+    @RequestMapping("exit")
+    public String exit(HttpSession session){
+        session.invalidate();
+        return "html/login";
+    }
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+</head>
+<body>
+<form>
+    <p hidden><input th:value="${session.user.id}" name="id"></p>
+    <p>手机号<input type="text" th:value="${session.user.userphone}" name="userphone" th:placeholder="${session.user.userphone}"></p>
+    <p><button type="button" th:onclick="'javascript:gai('+${session.user.id}+')'">修改</button></p>
+    <p><button><a href="myself.html">返回</a></button></p>
+</form>
+<script>
+    function gai(id) {
+        var flag=confirm("是否确认修改您的手机号？");
+        if (flag){
+            var userphone=$("[name='userphone']").val();
+            $.get("/phoneGai",{"id":id,"userphone":userphone},function (flag) {
+                if (flag==="true"){
+                    alert("修改成功！");
+                    location.href='/exit';
+                }else if (flag==="false"){
+                    alert("修改失败！");
+                }
+            })
+        }
+    }
+</script>
+</body>
+</html>
