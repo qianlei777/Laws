@@ -8,36 +8,81 @@
 <body>
 <form action="/addUsers" method="post">
     <p><input type="text" name="username" placeholder="请输入真实姓名">
-        <input type="radio" name="sex" value="1">男
+        <input selected type="radio" name="sex" value="1">男
         <input type="radio" name="sex" value="2">女</p>
     <p><input type="text" name="userphone" placeholder="手机号" id="phone"></p>
-    <p><input type="text" placeholder="请输入验证码" id="yan"><button type="button" onclick="fs()">发送验证码</button></p>
+    <p><input type="text" placeholder="请输入验证码" id="yan" name="yan"><button type="button" onclick="fs()">发送验证码</button></p>
     <p><input type="password" name="password" placeholder="密码设置6-20位字符，区分大小写"></p>
     <P><input type="password" name="quepwd" placeholder="请再次输入密码"></P>
-    <p><button type="submit">注册</button></p>
+    <p><button type="submit" id="zhu">注册</button></p>
     <p><button><a href="login.html">登录</a></button></p>
 </form>
 </body>
 <script>
-    $(function () {
-        function fs() {
-            var phone = $("#phone").val();
-            $.get("/phoneYan", {"phone": phone}, function (flag) {
-                if (flag ==="1") {
-                    alert("验证码已发送");
-                }
-            })
+    $("#zhu").click(function () {
+        var username=$("[name='username']").val();
+        if (username===""||username==null){
+            alert("用户名不可为空！");
+            return false;
         }
-        $("#yan").blur(function () {
-            var yzm=$("#yan").val();
-            $.get("/YanYan",{"yzm":yzm},function (flag) {
-                if(flag==="false"){
-                    $("#yan").val("");
-                }
-            })
+        var sex = $(":radio:checked");
+        var len=sex.length;
+        if(len<=0) {
+            alert("性别不可为空！");
+            return false;
+        }
+     /*       var sex=$("[name='sex']").val();
+        if (sex == undefined){
+            alert("请选择性别！！！");
+            return false;
+        }*/
+        var userphone=$("[name='userphone']").val();
+        if (userphone===""||userphone==null){
+            alert("手机号不可为空！");
+            return false;
+        }
+        var telStr = /^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$/;
+        if (!(telStr.test(userphone))) {
+            alert("手机号码输入不规范！！！");
+            return false;
+        }
+        var yan=$("[name='yan']").val();
+        if (yan===""||yan==null){
+            alert("验证码不可为空！");
+            return false;
+        }
+        var password=$("[name='password']").val();
+        if (password===""||password==null){
+            alert("密码不可为空！！！");
+            return false;
+        }
+        var quepwd=$("[name='quepwd']").val();
+        if (quepwd===""||quepwd==null){
+            alert("确认密码不可为空！");
+            return false;
+        }
+        if (quepwd!==password){
+            alert("确认密码必须和密码保持一致！");
+            return false;
+        }
+        return true;
+    });
+    function fs() {
+        var phone = $("#phone").val();
+        $.get("/phoneYan", {"phone": phone}, function (flag) {
+            if (flag ==="1") {
+                alert("验证码已发送");
+            }
         })
-    })
-
+    }
+    $("#yan").blur(function () {
+        var yzm=$("#yan").val();
+        $.get("/YanYan",{"yzm":yzm},function (flag) {
+            if(flag==="false"){
+                $("#yan").val("");
+            }
+        })
+    });
 
 </script>
 </html>

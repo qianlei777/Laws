@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginController {
 
-    private String num = "123456";
+    private String num = "";
 
     @Resource
     LoginService loginService;

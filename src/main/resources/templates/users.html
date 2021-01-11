@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script type="text/javascript" th:src="@{js/jquery-1.12.4.js}"></script>
     <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
 <body>
 <div th:replace="~{common::top}"></div>
 <div>
-    <div th:replace="~{common::left(active='laws')}"></div>
+    <div th:replace="~{common::left(active='user')}"></div>
 <h1>用户列表</h1>
 <div>
     <form action="/getAllUser" method="post">
@@ -46,6 +45,9 @@
         <a th:text="'第'+${pageNum}+'页/共'+${allUsers.getPages()}+'页'"></a>
     </div>
 </div>
+</div>
+<script type="text/javascript" th:src="@{js/jquery-1.12.4.js}"></script>
+<script type="text/javascript" th:src="@{js/main.js}"></script>
 <script>
         function change(id){
             var flag=confirm("是否确认修改会员类型？");
