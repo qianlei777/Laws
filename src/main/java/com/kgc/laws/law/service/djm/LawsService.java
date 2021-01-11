@@ -11,4 +11,6 @@ import java.util.List;
 public interface LawsService  {
     //查询所有 法规
     List<Laws> getLawsAll();
+    //根据 法规部号  查找 法规 版本
+    List<Laws> getLawsByLawsid(Integer lawsid);
 }

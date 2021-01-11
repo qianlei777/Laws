@@ -2,6 +2,7 @@ package com.kgc.laws.law.service.djm;
 
 import com.kgc.laws.law.mapper.LawsMapper;
 import com.kgc.laws.law.pojo.Laws;
+import com.kgc.laws.law.pojo.LawsExample;
 import com.kgc.laws.law.service.djm.LawsService;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +20,12 @@ public class LawsServiceImpl implements LawsService {
     @Override
     public List<Laws> getLawsAll() {
         return lawsMapper.selectByExample(null);
+    }
+
+    @Override
+    public List<Laws> getLawsByLawsid(Integer lawsid) {
+        LawsExample example = new LawsExample();
+        example.createCriteria().andLawsidEqualTo(lawsid);
+        return lawsMapper.selectByExample(example);
     }
 }

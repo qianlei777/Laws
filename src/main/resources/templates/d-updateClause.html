@@ -5,41 +5,122 @@
     <title>条款修改</title>
 </head>
 <body>
-<form action="/updataClause" method="post">
+    <div th:replace="~{common::top}"></div>
+    <div>
+        <div th:replace="~{common::left(active='page')}"></div>
+        <div id="main" class="addclause">
+            <form action="/updataClause" method="post">
+                <!--所属部号-->
+                <input type="hidden" th:value="${clause.lawid}" id="lawid">
+                <!--//此条款id-->
+                <input type="hidden" th:value="${clause.id}" name="id">
 
-    <p>法规：
-        <select name="lawid">
-            <option th:value="0">请选择</option>
-            <option th:each="l:${laws}" th:value="${l.lawsid}" th:text="${l.lawstype}+${l.lawsname}">请选择</option>
-        </select>
-    </p>
-    <p>所在目录：
-        <input name="pageid" th:value="${clause.pageid}">
-    </p>
-    <p>条款编号：
-        <input name="clauseid" th:value="${clause.clauseid}">
-    </p>
-    <p>条款编号别名：
-        <input name="lawstype" th:value="${clause.lawstype}">
-    </p>
-    <p>条款版本号：
-        <input name="lawsversion" th:value="${clause.lawsversion}">
-    </p>
-    <p>条款标题：
-        <input name="title" th:value="${clause.title}">
-    </p>
-    <p>条款内容：
-        <textarea name="ccontent" cols="30" rows="6" th:text="${clause.ccontent}"></textarea>
-    </p>
-    <p>关键词：
-        <input name="keyword" th:text="${clause.keyword}">
-    </p>
-    <p>
-        <input type="submit" value="保存">
-        <!--<input type="submit" value="保存">-->
-        <input type="reset" value="返回">
-    </p>
-</form>
+                <p>法规：
+                    <select name="lawid">
+                        <option th:value="0">请选择</option>
+                        <option th:each="l:${laws}" th:value="${l.lawsid}" th:text="${l.lawstype}+${l.lawsname}"
+                                th:selected="${l.lawsid==clause.lawid}"
+                        >请选择</option>
+                    </select>
+                </p>
+                <p>所在目录：
+                    <input name="pageid" th:value="${clause.pageid}">
+                </p>
+                <p>条款编号：
+                    <input name="clauseid" th:value="${clause.clauseid}">
+                </p>
+                <p>条款编号别名：
+                    <input name="lawstype" th:value="${clause.lawstype}">
+                </p>
+                <p>条款版本号：
+                    <input name="lawsversion" th:value="${clause.lawsversion}">
+                </p>
+                <p>条款标题：
+                    <input name="title" th:value="${clause.title}">
+                </p>
+                <p>条款内容：
+                    <textarea name="ccontent" cols="30" rows="6" th:text="${clause.ccontent}"></textarea>
+                </p>
+                <p>关键词：
+                    <input name="keyword" th:value="${clause.keyword}">
+                </p>
+                <p>
+                    <input type="submit" value="保存">
+                    <!--<input type="submit" value="保存">-->
+                    <input type="reset" value="返回">
+                </p>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    <script>
+        var lawsid = $("[name='lawid']").val();//部号id
+        //条款版本号与 法规部号一致
+        $("[name='lawsversion']").blur(function () {
+            var lawsversion = $(this).val();
+            $.get("/islawsversion","lawsid="+lawsid,function (data) {
+                if(data===lawsversion){
 
+                }else {
+                    alert("填写的条款版本与法规不一致！");
+                    $("[name='lawsversion']").val();
+                }
+            })
+        })
+
+
+        $("form").submit(function () {
+            var lawid=$("[name='lawid']").val();
+            if(lawid==0){
+                alert("请选择法规");
+                return false;
+            }
+            var pageid = $("[name='pageid']").val();
+            if(pageid==0){
+                alert("请选择目录")
+                return false;
+            }
+            var clauseid = $("[name='clauseid']").val();
+            //条款编号=部号.条款编号
+            var id = $("[name='id']").val();//条款编号
+            var lawid = $("[name='lawid']").val();//部号id
+            alert(lawid)
+            var isid= lawid+"."+id;
+            // alert(isid)
+            if(clauseid!=isid){
+                alert("部号填写错误");
+                return false;
+            }
+            var lawstype = $("[name='lawstype']").val();
+            if(lawstype==null||lawstype==""){
+                alert("别名不能为空");
+                return false;
+            }
+            //条款版本号与 法规部号一致
+            var lawsversion =$("[name='lawsversion']").val();
+            if(lawsversion==""||lawsversion==null){
+                alert("请填写条款版本");
+                return false;
+            }
+            var title = $("[name='title']").val();
+            if(title==null||title==""){
+                alert("请填写标题");
+                return false;
+            }
+            var ccontent = $("[name='ccontent']").val();
+            if(ccontent==""||ccontent==null){
+                alert("内容不能为空");
+                return false;
+            }
+            var keyword = $("[name='keyword']").val();
+            if(keyword==null||keyword==""){
+                alert("关键字不能为空");
+                return false;
+            }
+            return true;
+
+        });
+    </script>
 </body>
 </html>
