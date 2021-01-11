@@ -60,6 +60,14 @@ public class ClauseController {
     @RequestMapping("/toaddClause")
     public String toadd(Model model) {
         List<Laws> lawsAll = lawsService.getLawsAll();
+        List<Page> parentList = pageService.getAllPage(null);
+        List<Page> allPage = new ArrayList<>();
+        for (Page page : parentList) {
+            if(page.getPageparent()==0){
+                allPage.add(page);
+            }
+        }
+        model.addAttribute("allPage",allPage);
         model.addAttribute("laws", lawsAll);
         return "d-addClause";
     }
@@ -68,11 +76,13 @@ public class ClauseController {
     @RequestMapping("/addClause")
     @ResponseBody
     public String addClause(Clause clause, Model model) {
-        int i = clauseService.insertClause(clause);
-        if (i > 0) {
+        Page page = pageService.getPage(clause.getPageid());
+        if(page.getLawsid()==clause.getId()){
+            int i = clauseService.insertClause(clause);
             return "<script>alert('添加成功');location.href='/toaddClause'</script>";
+        }else {
+            return "<script>alert('添加失败,请正确填写所属目录');location.href='/toaddClause'</script>";
         }
-        return "<script>alert('添加失败');location.href='/toaddClause'</script>";
     }
 
     @RequestMapping("/toupdateClause")
@@ -104,16 +114,17 @@ public class ClauseController {
     }
     @PostMapping("/mulu")
     @ResponseBody
-    public String getMulu(Integer lawid){
-        List<Page> parentList = pageService.getAllPage(lawid);
-        List<Page> allPage = new ArrayList<>();
-        for (Page page : parentList) {
-            if(page.getPageparent()==0){
-                allPage.add(page);
-            }
-        }
-        String json = JSON.toJSONString(allPage);
-        System.out.println(json);
-        return json;
+    public String getMulu(Integer lawid,Integer pageid){
+      if(lawid!=0&&pageid!=0){
+          Page page = pageService.getPage(pageid);
+          if(page.getLawsid()==lawid){
+              return "1";
+          }else {
+              return "0";
+          }
+      }else {
+          return "0";
+      }
+
     }
 }

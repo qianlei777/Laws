@@ -14,23 +14,31 @@
 
             <p>法规：
                 <select name="lawid">
-                    <option th:value="0">请选择</option>
+                    <option value="0">请选择</option>
                     <option th:each="l:${laws}" th:value="${l.id}" th:text="${l.lawstype}+${l.lawsname}">请选择
                     </option>
                 </select>
             </p>
             <p>所在目录：
-                <select name="pageid">
-                    <option>请选择</option>
-                    <th:block th:fragment="mulu(allPage)">
-                        <th:block th:each="page:${allPage}">
-                            <option value=""></option>
-                            <option th:if="${page.pagelevel==1}" th:text="'|-'+${page.pagename}" th:value="${page.id}"></option>
-                            <option th:if="${page.pagelevel==2}" th:text="'|-|-'+${page.pagename}" th:value="${page.id}"></option>
-                            <option th:if="${page.pagelevel==3}" th:text="'|-|-|-'+${page.pagename}" th:value="${page.id}"></option>
-                            <option th:if="${page.pagelevel==4}" th:text="'|-|-|-|-'+${page.pagename}" th:value="${page.id}"></option>
-                            <th:block th:if="${page.childpage!=null}"
-                                      th:include="this::mulu(${page.childpage})"></th:block>
+                <select name="pageid" th:onchange="change()">
+                    <option value="0">请选择</option>
+                    <th:block th:each="law:${laws}">
+                        <option th:text="${law.getLawsname()}" value="0"></option>
+                        <th:block th:fragment="mulu(allPage)">
+                            <th:block th:each="page:${allPage}">
+                                <th:block th:if="${page.lawsid==law.id}">
+                                    <option th:if="${page.pagelevel==1}" th:text="'|-'+${page.pagename}"
+                                            th:value="${page.id}"></option>
+                                    <option th:if="${page.pagelevel==2}" th:text="'|-|-'+${page.pagename}"
+                                            th:value="${page.id}"></option>
+                                    <option th:if="${page.pagelevel==3}" th:text="'|-|-|-'+${page.pagename}"
+                                            th:value="${page.id}"></option>
+                                    <option th:if="${page.pagelevel==4}" th:text="'|-|-|-|-'+${page.pagename}"
+                                            th:value="${page.id}"></option>
+                                    <th:block th:if="${page.childpage!=null}"
+                                              th:include="this::mulu(${page.childpage})"></th:block>
+                                </th:block>
+                            </th:block>
                         </th:block>
                     </th:block>
                 </select>
@@ -130,36 +138,15 @@
         }
         return flag;
     })
-    $("[name='lawid']").change(function () {
-        var fagui = $(this).val();
-        $.post("/mulu","lawid="+fagui,function (data) {
-            var st = " <option>请选择</option>";
-            // var da = jQuery.parseJSON(data);
-            var da = eval(data);
-            // data.each(function (d, da) {
-            //     alert(123);
-            //     alert(data[d]);
-
-            // })
-           for(var d in da){
-               if(da[d].pagelevel==1){
-                   st += "<option value='"+data[d].id+"'>"+"|-"+data[d].pagename+"</option>";
-               }
-               if(da[d].pagelevel=="2"){
-                   st += "<option value='"+data[d].id+"'>"+"|-|-"+data[d].pagename+"</option>";
-               }
-               if(da[d].pagelevel==3){
-                   st += "<option value='"+data[d].id+"'>"+"|-|-|-"+data[d].pagename+"</option>";
-               }
-               if(da[d].pagelevel==4){
-                   st += "<option value='"+data[d].id+"'>"+'|-|-|-|-'+data[d].pagename+"</option>";
-               }
-           }
-
-            $("[name='pageid']").html(st);
+    function change() {
+        var mulu = $("[name='pageid']").val();
+        var fagui = $("[name='lawid']").val();
+        $.post("/mulu","lawid="+fagui+"&pageid="+mulu,function (data) {
+            if(data=="0"){
+                alert("请正确选择所属目录");
+            }
         })
-    })
-
+    }
 </script>
 <script type="text/javascript" th:src="@{/js/main.js}"></script>
 </body>
