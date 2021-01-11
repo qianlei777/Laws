@@ -1,16 +1,22 @@
 package com.kgc.laws.law.controller.djm;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.kgc.laws.law.pojo.Clause;
 import com.kgc.laws.law.pojo.Laws;
+import com.kgc.laws.law.pojo.Page;
 import com.kgc.laws.law.service.djm.ClauseService;
 import com.kgc.laws.law.service.djm.LawsService;
+import com.kgc.laws.law.service.qian.PageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.Mapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +32,8 @@ public class ClauseController {
     @Resource
     LawsService lawsService;
 
+    @Resource
+    PageService pageService;
     //m模糊查询 分页
     @RequestMapping("/getClauseAll")
     public String getClauseAll(Integer pageNum, Integer lawsid, String clauseid, String like, Model model) {
@@ -93,5 +101,19 @@ public class ClauseController {
             return "<script>alert('删除成功');location.href='/getClauseAll'</script>";
         }
         return "<script>alert('删除失败');location.href='/getClauseAll'</script>";
+    }
+    @PostMapping("/mulu")
+    @ResponseBody
+    public String getMulu(Integer lawid){
+        List<Page> parentList = pageService.getAllPage(lawid);
+        List<Page> allPage = new ArrayList<>();
+        for (Page page : parentList) {
+            if(page.getPageparent()==0){
+                allPage.add(page);
+            }
+        }
+        String json = JSON.toJSONString(allPage);
+        System.out.println(json);
+        return json;
     }
 }

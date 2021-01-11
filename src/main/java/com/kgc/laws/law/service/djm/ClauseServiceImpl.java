@@ -63,4 +63,17 @@ public class ClauseServiceImpl implements ClauseService {
         return clauseMapper.updateByPrimaryKeySelective(clause);
     }
 
+    /*根据条款编号或者关键字查询
+     * @author qian
+     * @param text
+     * @return
+     */
+    @Override
+    public List<Clause> selectByKeyWord(String text) {
+        ClauseExample example = new ClauseExample();
+        example.createCriteria().andTitleLike(text);
+        example.or().andClauseidLike(text);
+        List<Clause> clauses = clauseMapper.selectByExample(example);
+        return clauses;
+    }
 }

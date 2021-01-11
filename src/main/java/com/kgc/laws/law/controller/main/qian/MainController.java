@@ -1,20 +1,30 @@
 package com.kgc.laws.law.controller.main.qian;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.kgc.laws.law.pojo.*;
 import com.kgc.laws.law.service.djm.ClauseService;
 import com.kgc.laws.law.service.qian.FavoriteService;
 import com.kgc.laws.law.service.qian.LawService;
 import com.kgc.laws.law.service.qian.PageService;
 import com.kgc.laws.law.service.qian.impl.FavoriteServiceImpl;
+import com.kgc.laws.law.utils.RedisUtils;
+import org.springframework.data.redis.core.BoundSetOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.reflect.generics.visitor.Reifier;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeMap;
 
 @Controller
@@ -27,6 +37,10 @@ public class MainController {
     ClauseService clauseService;
     @Resource
     FavoriteService favoriteService;
+    @Resource
+    RedisUtils redisUtils;
+    @Resource
+    RedisTemplate redisTemplate;
     //跳转前端首页
     @RequestMapping("/main")
     public String getAllClause(Model model, HttpSession session){
@@ -95,5 +109,33 @@ public class MainController {
             flag="true";
         }
         return flag;
+    }
+    @RequestMapping("/gosearch")
+    public String goSearcher(Model model){
+        try {
+            InetAddress address = InetAddress.getLocalHost();
+            String hostAddress = address.getHostAddress();
+            Set<String> search =  redisTemplate.boundSetOps(hostAddress).members();
+            model.addAttribute("search",search);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        return "html/gosearch";
+    }
+    @RequestMapping("dosearch")
+    public String doSearch(String stext,Model model){
+        InetAddress address = null;
+        try {
+            address = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        String hostAddress = address.getHostAddress();
+        redisTemplate.boundSetOps(hostAddress).add(stext);
+        Set search = redisTemplate.boundSetOps(hostAddress).members();
+        model.addAttribute("search",search);
+        List<Clause> clauses = clauseService.selectByKeyWord("%"+stext+"%");
+        model.addAttribute("searchClause",clauses);
+        return  "html/gosearch";
     }
 }

@@ -26,4 +26,6 @@ public interface ClauseService {
 
     //修改
     int updataClauseByClause(Clause clause);
+
+    List<Clause>selectByKeyWord(String text);
 }

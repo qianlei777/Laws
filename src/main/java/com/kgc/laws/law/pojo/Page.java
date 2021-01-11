@@ -19,7 +19,6 @@ public class Page {
 
     private List<Page>childpage;
 
-
     public List<Clause> getClauses() {
         return clauses;
     }

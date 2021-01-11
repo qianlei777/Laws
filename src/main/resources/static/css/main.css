@@ -135,4 +135,7 @@ display: inline-block;
     vertical-align: middle;
     display: table-cell;
 }
+#search{
+    width: 500px;
+}
 
