@@ -11,4 +11,13 @@ public interface AdminService {
 
     //分页 模糊查找用户
     PageInfo<Admin> getAdminInfo(Integer pageNum,Integer pageSize,String phone,String name);
+
+    //添加用户
+    int insertAdmin(Admin admin);
+
+    //根据主键 查找管理员
+    Admin getAdminById(Integer id);
+
+    //修改管理员信息
+    int updateAdmin(Admin admin);
 }

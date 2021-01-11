@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>公司介绍</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{common::top}"></div>
+<div>
+    <div th:replace="~{common::settings(active='page')}"></div>
+    <div id="main" class="">
+       <p>短信平台apiKey:
+           <input th:value="3d0b6588a6f98a6b64ed2efbd2a44f88">
+       </p>
+        <button>保存</button>
+
+    </div>
+    <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    <script type="text/javascript" th:src="@{/js/djm-main.js}"></script>
+</body>
+</html>

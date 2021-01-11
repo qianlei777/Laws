@@ -19,7 +19,7 @@ public interface ClauseService {
     int insertClause(Clause clause);
 
     //删除
-    int updateById(Integer id);
+    int updateById(Clause clause);
 
     //根据id 查询 Clause对象
     Clause getClauseById(Integer id);

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>邮件SMTP设置</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{common::top}"></div>
+<div>
+    <div th:replace="~{common::settings(active='page')}"></div>
+    <div id="main" class="">
+        <p>Email：
+            <input value="office@hangduo-aviation.com">开启
+
+        </p>
+        <p>服务器：
+            <input th:value="smtp.exmail.qq.com">
+        </p>
+        <p>用户名：
+            <input value="office@hangduo-aviation.com">
+        </p>
+        <p>密码：
+            <input th:value="Hang123123">
+        </p>
+        <p>一次连接服务器连续发送：
+            <input value="15">
+        </p>
+        <p>登录类型：
+            <select>
+                <option>LOGIN认证</option>
+            </select>
+        </p>
+        <button>保存</button>
+
+    </div>
+    <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    <script type="text/javascript" th:src="@{/js/djm-main.js}"></script>
+</body>
+</html>
