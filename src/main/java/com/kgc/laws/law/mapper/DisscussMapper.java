@@ -6,6 +6,10 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+/**
+ * @author shkstart
+ * @create 2021-01-11 14:45
+ */
 public interface DisscussMapper {
     int countByExample(DisscussExample example);
 
