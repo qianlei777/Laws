@@ -8,7 +8,7 @@
         <div class="xiala">
             <p><a th:class="${active=='laws'?'active':''}" th:href="@{/fshow}">法规列表</a></p>
             <p><a th:class="${active=='page'?'active':''}" th:href="@{/allPage}">法规目录管理</a></p>
-            <p>条款列表</p>
+            <p><a th:class="${active=='page'?'active':''}" th:href="@{/getClauseAll}">条款列表</a></p>
         </div>
     </div>
     <div id="users">
