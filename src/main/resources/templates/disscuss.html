@@ -5,6 +5,7 @@
     <title>Title</title>
     <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
 <style>
     body{
@@ -43,6 +44,9 @@
     }
 </style>
 <body>
+<div th:replace="~{common::top}"></div>
+<div>
+    <div th:replace="~{common::left(active='laws')}"></div>
 <h1>用户咨询列表</h1>
 <div>
     <form action="/getAllDisscuss" method="post">

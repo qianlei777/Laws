@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加用户</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{common::top}"></div>
+<div>
+    <div th:replace="~{common::settings(active='page')}"></div>
+    <div id="main" class="">
+
+        <form action="/addAdmin" method="post">
+            <p>管理员姓名：
+                <input name="aname" >
+            </p>
+            <p>管理员手机号：
+                <input name="phone" >
+            </p>
+            <p>密码：
+                <input name="password" type="password">
+            </p>
+            <p>确认密码：
+                <input name="ispwd" type="password">
+            </p>
+            <p>用户角色：
+                <input type="radio" name="role" value="1">航多知识管理系统管理员
+            </p>
+            <p>备注：
+                <textarea name="remark" cols="20" rows="5"></textarea>
+            </p>
+            <p>
+                <input type="submit" value="保存">
+                <input type="reset" value="返回">
+            </p>
+        </form>
+
+
+</div>
+<script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/js/djm-main.js}"></script>
+</body>
+</html>

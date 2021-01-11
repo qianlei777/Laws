@@ -25,4 +25,9 @@ public class FavoriteServiceImpl implements FavoriteService{
         List<Favorite> favorites = favoriteMapper.selectByExample(example);
         return favorites;
     }
+
+    @Override
+    public int addFavorite(Favorite favorite) {
+        return favoriteMapper.insertSelective(favorite);
+    }
 }

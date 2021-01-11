@@ -18,7 +18,11 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public Users getUsers(String userphone, String password) {
         UsersExample example=new UsersExample();
-        example.createCriteria().andUserphoneEqualTo(userphone).andPasswordEqualTo(password);
+        UsersExample.Criteria criteria = example.createCriteria();
+        if (password!=null) {
+            criteria.andPasswordEqualTo(password);
+        }
+        criteria.andUserphoneEqualTo(userphone);
         List<Users> users = usersMapper.selectByExample(example);
         if (users.size()>0) {
             return users.get(0);

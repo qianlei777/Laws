@@ -87,8 +87,8 @@ public class ClauseController {
 
     @RequestMapping("/delClause")
     @ResponseBody
-    public String delClause(Integer id) {
-        int i = clauseService.updateById(id);
+    public String delClause(Clause clause) {
+        int i = clauseService.updateById(clause);
         if (i > 0) {
             return "<script>alert('删除成功');location.href='/getClauseAll'</script>";
         }

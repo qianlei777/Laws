@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>公司介绍</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{common::top}"></div>
+<div>
+    <div th:replace="~{common::settings(active='page')}"></div>
+    <div id="main" class="">
+       <textarea cols="60" rows="20">
+           上海航多航空技术有限公司祝广大朋友2019年心想事成！ 2019年与大家一起携手共进，砥砺前行，撸起袖子加油干！
+
+上海航多航空技术有限公司概况 上海航多航空技术有限公司（简称上海航多航空）成立于2012年，注册资本500万。主要从事民用航空器及相关零部件领域内的技术转让、技术开发、技术咨询、技术服务，机电设备、机械零部件、计算机软件（除计算机信息系统安全专用产品）的研发、销售，自有设备租赁（不得从事金融租赁），从事货物及技术的进出口业务。 公司秉承“服务于航空企业，服务于航空人员，快乐航空、快乐生活”的理念，以“服务客户，互利共赢”的宗旨，努力成为国内一流、国际知名的民用航空综合服务提供商。 
+       </textarea>
+        <button>保存</button>
+
+    </div>
+    <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    <script type="text/javascript" th:src="@{/js/djm-main.js}"></script>
+</body>
+</html>

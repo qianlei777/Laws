@@ -7,12 +7,14 @@
 </head>
 <body>
 <form action="/login" method="post">
-    <p><input type="text" name="userphone" placeholder="手机号码"></p>
+    <p id="xian">[[${msg}]]</p>
+    <p><input type="text" name="userphone" placeholder="手机号码" id="phone"></p>
     <p id="mima"><input type="password" name="password" placeholder="密码"></p>
-    <p id="yan" hidden><input type="text" name="" placeholder="请输入验证码"><a href="#">发送验证码</a></p>
+    <p id="yan" hidden><input type="text" id="yan1" placeholder="请输入验证码"><button type="button" onclick="fa()">发送验证码</button></p>
     <p id="yz"><a onclick="yan()">验证码登录</a><a href="#">忘记密码</a></p>
     <p id="mi" hidden><a onclick="mima()" >密码登录</a> <a href="#">忘记密码</a></p>
-    <P><button type="submit">登录</button></P>
+    <P id="mideng"><button type="submit">登录</button></P>
+    <P id="yandeng" hidden><button type="button" onclick="deng()">登录</button></P>
     <p><button><a href="rest.html">注册</a></button></p>
     <p><a href="#">游客访问</a></p>
 </form>
@@ -22,13 +24,51 @@ function yan() {
     $("#mi").show();
     $("#yz").hide();
     $("#mima").hide();
+    $("#mideng").hide();
+    $("#yandeng").show();
 }
 function mima() {
     $("#mima").show();
     $("#yz").show();
     $("#mi").hide();
     $("#yan").hide();
+    $("#mideng").show();
+    $("#yandeng").hide();
 }
+function deng() {
+     var phone=$("#phone").val();
+    if (fa()===true){
+        location.href="/login";
+    }
+}
+function fa() {
+        var phone=$("#phone").val();
+        $.get("/phoneYanZheng", { "phone": phone}, function (flag) {
+            if (flag === "false") {
+                alert("手机号输入错误！！！,改手机号不存在");
+                return false;
+            } else {
+                //向手机发送验证码
+                $.post("/login10.do",{"phone":phone},function (flag) {
+                    if(flag==="1"){
+                        alert("验证码已发送");
+                    }
+                })
+            }
+        })
+}
+
+$(function () {
+    $("#xian").html("");
+    $("#yan1").blur(function () {
+        var yzm=$("#yan1").val();
+        $.get("/YanYan",{"yzm":yzm},function (flag) {
+            if(flag==="false"){
+                $("#yan1").val("");
+            }
+        })
+    })
+})
 </script>
 </body>
 </html>

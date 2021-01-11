@@ -8,6 +8,7 @@
 <body>
 <div>
     <input th:value="${session.user!=null}?${session.user.username}:''" hidden id="username">
+    <input hidden th:value="${clause.id}" name="id"/>
     <p th:each="value:${parent}" th:text="${value.value.id==clause.pageid}?${value.value.pagename}:${value.value.pagename}+'>'" class="onlypage"></p>
 </div>
 <div id="ccontent">
@@ -16,6 +17,7 @@
     <p th:text="${clause.ccontent}"></p>
 </div>
 <div class="refer" onclick="disscuss()">立即咨询</div>
+<th:block th:include="~{common::footer}"></th:block>
 <section>
     <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
     <script type="text/javascript">
@@ -33,6 +35,10 @@
               }
           }else{
               $(this).toggleClass('cs');
+              var id=$("[name='id']").val();
+              $.get("/addFavorite",{"clauseid":id},function (flag) {
+
+              });
           }
       })
     </script>
