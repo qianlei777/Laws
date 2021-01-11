@@ -13,35 +13,38 @@
         <form action="/addClause" method="post">
 
             <p>法规：
-                <select name="lawid">
+                <select name="lawid" id="id1">
                     <option th:value="0">请选择</option>
                     <option th:each="l:${laws}" th:value="${l.lawsid}" th:text="${l.lawstype}+${l.lawsname}">请选择
                     </option>
-                </select>
+                </select><span id="span1"></span>
             </p>
             <p>所在目录：
-                <input name="pageid">
+                <input name="pageid" id="id2"><span id="span2"></span>
             </p>
             <p>条款编号：
-                <input name="clauseid">请输入数字和 . 并以数字结尾, 如22.33.44<span>*</span>
+                <input name="clauseid" id="id3">请输入数字和 . 并以数字结尾, 如22.33.44<span>*</span>
                 <span hidden id="spa">必填项</span>
-                <span hidden id="sp" color="red">请输入数字和 . 并以数字结尾!</span>
+
+
             </p>
+            <p><span id="sp" color="red"></span></p>
             <p>条款编号别名：
-                <input name="lawstype">
+                <input name="lawstype" id="id4"><span id="span3"></span>
             </p>
             <p>条款版本号：
-                <input name="lawsversion">
+                <input name="lawsversion" id="id5"><span id="span4"></span>
             </p>
             <p>条款标题：
-                <input name="title">
-                <span id="spat" hidden>必填信息</span>
+                <input name="title" id="id6">
+                <span id="spat" hidden>必填信息</span><span id="span5"></span>
             </p>
             <p>条款内容：
-                <textarea name="ccontent" cols="30" rows="6"></textarea>
+                <textarea name="ccontent" cols="30" rows="6" id="id7"></textarea>
+                <span id="span6"></span>
             </p>
             <p>关键词：
-                <input name="keyword">
+                <input name="keyword" id="id8"><span id="span7"></span>
             </p>
             <p>
                 <input type="submit" value="保存">
@@ -51,75 +54,212 @@
         </form>
     </div>
 </div>
+
+<script src="webjars/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
 <script>
-    <!---->
-    $("[name='clauseid']").focus(function () {
-        var zz = /^\d(\.|\d)*\d$/;
-        var v = $(this).val();
-
-        if (zz.test(v) && v != "") {
-            $(this).unbind('focus');
-            $("#sp").hidden();
-            $("#spa").hidden();
+    $(function(){
+        //法规验证
+        function t1(){
+            var name=$("#id1").val();
+            if(name==0){
+                $("#span1").html("请选择法规！");
+                return false;
+            }else{
+                $("#span1").html("");
+            }
         }
-
-    })
-    $("[name='clauseid']").blur(function () {
-        // alert(123)
-        var v = $(this).val();
-        var zz = /^\d(\.|\d)*\d$/;
-
-        if (v == "") {
-            $("#spa").show();
+        $("#id1").blur(t1)
+        //所在目录验证
+        function t2(){
+            var name=$("#id2").val();
+            if(name==""){
+                $("#span2").html("请填写目录！");
+                return false;
+            }else{
+                $("#span2").html("");
+            }
         }
-        if (!(zz.test(v))) {
-            $("#sp").show();
-            $(this).focus();
-
+        $("#id2").blur(t2)
+        //条款编号验证
+        function t3(){
+            var name=$("#id3").val();
+            if(name==""){
+                $("#sp").html("");
+                $("#sp").html("条款编号不能为空!");
+                return false;
+            }else{
+                var zz = /^\d(\.|\d)*\d$/;
+                if(zz.test(name)){
+                    $("#sp").html("");
+                }else{
+                    $("#sp").html("请输入数字和 . 并以数字结尾!");
+                    return false;
+                }
+            }
         }
+        $("#id3").blur(t3)
 
 
-        // $("#sp").hidden();
-    })
-
-    $("[name='clauseid']").blur(checkClauseid);
-    $("[name='title']").blur(checkTitle);
-
-    function checkClauseid() {
-        var clauseid = $("[name='clauseid']").val();
-        if (clauseid == "") {
-            $("#spa").show();
+    //条款编号别名
+    function t4(){
+        var name=$("#id4").val();
+        if(name==""){
+            $("#span3").html("请输入条款编号别名");
             return false;
+        }else{
+            $("#span3").html("");
         }
-        return true;
     }
+    $("#id4").blur(t4)
 
-    function checkTitle() {
-        var title = $("[name='title']").val();
-        if (title == "") {
-            $("#spat").show();
-            return false;
+        //条款版本号
+        function t5(){
+            var name=$("#id5").val();
+            if(name==""){
+                $("#span4").html("请输入条款版本号");
+                return false;
+            }else{
+                $("#span4").html("");
+            }
         }
-        return true;
-    }
+        $("#id5").blur(t5)
 
 
-    $("form").submit(function () {
-        var flag = true;
-        if (checkClauseid() == false) {
-
-            flag = false;
+        //条款标题
+        function t6(){
+            var name=$("#id6").val();
+            if(name==""){
+                $("#span5").html("请输入条款标题");
+                return false;
+            }else{
+                $("#span5").html("");
+            }
         }
-        if (checkTitle() == false) {
+        $("#id6").blur(t6)
 
-            flag = false;
+        //条款内容
+        function t7(){
+            var name=$("#id7").val();
+            if(name==""){
+                $("#span6").html("请输入条款内容");
+                return false;
+            }else{
+                $("#span6").html("");
+            }
         }
-        return flag;
+        $("#id7").blur(t7)
+
+        //关键词
+        function t8(){
+            var name=$("#id8").val();
+            if(name==""){
+                $("#span7").html("请输入关键词");
+                return false;
+            }else{
+                $("#span7").html("");
+            }
+        }
+        $("#id8").blur(t8)
+
+        $("form").submit(function(){
+            if(t1()==false){
+                return false;
+            }
+            if(t2()==false){
+                return false;
+            }
+            if(t3()==false){
+                return false;
+            }
+            if(t4()==false){
+                return false;
+            }
+            if(t5()==false){
+                return false;
+            }
+            if(t6()==false){
+                return false;
+            }
+            if(t7()==false){
+                return false;
+            }
+            if(t8()==false){
+                return false;
+            }
+          return true;
+        })
     })
-
 
 </script>
-<script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
-<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<!--<script>-->
+    <!--&lt;!&ndash;&ndash;&gt;-->
+    <!--$("[name='clauseid']").focus(function () {-->
+        <!--var zz = /^\d(\.|\d)*\d$/;-->
+        <!--var v = $(this).val();-->
+
+        <!--if (zz.test(v) && v != "") {-->
+            <!--$(this).unbind('focus');-->
+            <!--$("#sp").hidden();-->
+            <!--$("#spa").hidden();-->
+        <!--}-->
+
+    <!--})-->
+    <!--$("[name='clauseid']").blur(function () {-->
+        <!--// alert(123)-->
+        <!--var v = $(this).val();-->
+        <!--var zz = /^\d(\.|\d)*\d$/;-->
+
+        <!--if (v == "") {-->
+            <!--$("#spa").show();-->
+        <!--}-->
+        <!--if (!(zz.test(v))) {-->
+            <!--$("#sp").show();-->
+            <!--$(this).focus();-->
+
+        <!--}-->
+
+
+        <!--// $("#sp").hidden();-->
+    <!--})-->
+
+    <!--$("[name='clauseid']").blur(checkClauseid);-->
+    <!--$("[name='title']").blur(checkTitle);-->
+
+    <!--function checkClauseid() {-->
+        <!--var clauseid = $("[name='clauseid']").val();-->
+        <!--if (clauseid == "") {-->
+            <!--$("#spa").show();-->
+            <!--return false;-->
+        <!--}-->
+        <!--return true;-->
+    <!--}-->
+
+    <!--function checkTitle() {-->
+        <!--var title = $("[name='title']").val();-->
+        <!--if (title == "") {-->
+            <!--$("#spat").show();-->
+            <!--return false;-->
+        <!--}-->
+        <!--return true;-->
+    <!--}-->
+
+
+    <!--$("form").submit(function () {-->
+        <!--var flag = true;-->
+        <!--if (checkClauseid() == false) {-->
+
+            <!--flag = false;-->
+        <!--}-->
+        <!--if (checkTitle() == false) {-->
+
+            <!--flag = false;-->
+        <!--}-->
+        <!--return flag;-->
+    <!--})-->
+
+
+<!--</script>-->
+
 </body>
 </html>
