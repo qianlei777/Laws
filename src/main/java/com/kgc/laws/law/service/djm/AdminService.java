@@ -20,4 +20,7 @@ public interface AdminService {
 
     //修改管理员信息
     int updateAdmin(Admin admin);
+
+    //根据手机号 查找是否存在
+    boolean existsPhone(String phone);
 }
