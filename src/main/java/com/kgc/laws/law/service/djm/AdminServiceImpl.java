@@ -8,6 +8,8 @@ import com.kgc.laws.law.pojo.AdminExample;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.lang.model.element.VariableElement;
+import java.util.List;
 
 /**
  * @author shkstart
@@ -50,5 +52,16 @@ public class AdminServiceImpl implements AdminService {
     public int updateAdmin(Admin admin) {
 
         return adminMapper.updateByPrimaryKey(admin);
+    }
+
+    @Override
+    public boolean existsPhone(String phone) {
+        AdminExample example = new AdminExample();
+        example.createCriteria().andPhoneEqualTo(phone);
+        List<Admin> admins = adminMapper.selectByExample(example);
+        if(admins.size()>0){
+            return false;
+        }
+        return true;
     }
 }

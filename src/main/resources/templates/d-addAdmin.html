@@ -11,12 +11,12 @@
     <div th:replace="~{common::settings(active='page')}"></div>
     <div id="main" class="">
 
-        <form action="/addAdmin" method="post">
+        <form action="/addAdmin" method="post" >
             <p>管理员姓名：
                 <input name="aname" >
             </p>
             <p>管理员手机号：
-                <input name="phone" >
+                <input name="phone" id="phones" >
             </p>
             <p>密码：
                 <input name="password" type="password">
@@ -38,8 +38,49 @@
 
 
 </div>
-<script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
-<script type="text/javascript" th:src="@{/js/main.js}"></script>
-<script type="text/javascript" th:src="@{/js/djm-main.js}"></script>
+
+<script type="text/javascript" th:src="@{/static/js/jquery-1.12.4.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/djm-main.js}"></script>
+
+    <script>
+        //管理员手机号 唯一
+        $("#phones").blur(function () {
+            var phone = $(this).val();
+            $.get("/existsPhone","phone="+phone,function (data) {
+                if(!data){
+                    alert("手机号已存在！请更换");
+                    $("#phones").val("");
+                }
+            })
+        })
+
+        $("form").submit(function () {
+            var name=$("[name='aname']").val();
+            if(name==""){
+                alert("姓名不能为空！");
+                return false;
+            }
+            var password=$("[name='password']").val();
+            var ispwd =$("[name='ispwd']").val();
+            if (password!=ispwd){
+                alert("两次密码不一致");
+                return false;
+            }
+            var phone = $("#phones").val();
+            if(phone===""||phone==""){
+                alert("手机号不能为空！");
+                return false;
+            }
+            return true;
+        })
+
+        //姓名不能为空
+
+        //密码 确认密码一致
+
+
+
+    </script>
 </body>
 </html>

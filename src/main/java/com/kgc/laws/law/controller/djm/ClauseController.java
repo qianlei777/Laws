@@ -3,6 +3,7 @@ package com.kgc.laws.law.controller.djm;
 import com.github.pagehelper.PageInfo;
 import com.kgc.laws.law.pojo.Clause;
 import com.kgc.laws.law.pojo.Laws;
+import com.kgc.laws.law.service.djm.AdminService;
 import com.kgc.laws.law.service.djm.ClauseService;
 import com.kgc.laws.law.service.djm.LawsService;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,9 @@ public class ClauseController {
 
     @Resource
     LawsService lawsService;
+
+    @Resource
+    AdminService adminService;
 
     //m模糊查询 分页
     @RequestMapping("/getClauseAll")
@@ -77,6 +81,7 @@ public class ClauseController {
     }
 
     @RequestMapping("/updataClause")
+    @ResponseBody
     public String updataClause(Clause clause) {
         int i = clauseService.updataClauseByClause(clause);
         if (i > 0) {
@@ -93,5 +98,22 @@ public class ClauseController {
             return "<script>alert('删除成功');location.href='/getClauseAll'</script>";
         }
         return "<script>alert('删除失败');location.href='/getClauseAll'</script>";
+    }
+
+    @RequestMapping("/existsPhone")
+    @ResponseBody
+    public Boolean existsPhone(String phone){
+        return adminService.existsPhone(phone);
+    }
+
+    @RequestMapping("/islawsversion")
+    @ResponseBody
+    public String islawsversion(Integer lawsid){
+
+        List<Laws> lawsByLawsid = lawsService.getLawsByLawsid(lawsid);
+        if(lawsByLawsid.size()>0){
+            return lawsByLawsid.get(0).getLawsversion();
+        }
+        return null;
     }
 }
