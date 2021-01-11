@@ -6,6 +6,7 @@
     <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
 <body>
+<input placeholder="请输入搜索条款编号，例25.1309" id="search">
 <div>
     <div id="maintype">
         <div th:each="laws:${allLaws}" class="fenlei">
@@ -30,6 +31,9 @@
         function allClause(id) {
             location.href='/allPandC?id='+id;
         }
+        $("#search").focus(function () {
+            location.href="";
+        });
     </script>
 </section>
 </body>

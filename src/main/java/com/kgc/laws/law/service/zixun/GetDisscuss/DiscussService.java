@@ -7,4 +7,5 @@ public interface DiscussService {
     PageInfo<Disscuss> getAllDisscuss(String phone, String content, Integer pageNum, Integer pageSize);
     Integer delDisscussById(Integer id);
     Disscuss getDisscussById(Integer id);
+    Integer addDisscuss(Disscuss disscuss);
 }

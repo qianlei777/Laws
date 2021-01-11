@@ -51,4 +51,10 @@ public class DisscussServiceImpl implements DiscussService {
         Disscuss Disscuss = disscussMapper.selectByPrimaryKey(id);
         return Disscuss;
     }
+
+    @Override
+    public Integer addDisscuss(Disscuss disscuss) {
+        int insert = disscussMapper.insert(disscuss);
+        return insert;
+    }
 }

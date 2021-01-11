@@ -11,40 +11,40 @@
     <p>我们会安排专业的顾问跟您联系</p>
 </div>
 <div id="disform">
-    <form method="post">
+    <form method="post" th:action="@{/addDisscuss}">
         <p>
             <span></span>
-            <input type="text" placeholder="请输入姓名,不超过十个字" name="" class="textbox">
+            <input type="text" placeholder="请输入姓名,不超过十个字" name="username" class="textbox">
         <hr/>
         </p>
         <p>
             <span></span>
-            <input type="text" placeholder="请输入手机号码" name="" class="textbox">
+            <input type="text" placeholder="请输入手机号码" name="userphone" class="textbox">
         <hr/>
         </p>
         <p>
             <span></span>
-            <input type="text" placeholder="工作单位" name="" class="textbox">
+            <input type="text" placeholder="工作单位" name="works" class="textbox">
         <hr/>
         </p>
         <p>
             <span></span>
-            <input type="text" placeholder="邮箱" name="" class="textbox">
+            <input type="text" placeholder="邮箱" name="email" class="textbox">
         <hr/>
         </p>
         <p>
             <span></span>
-            <input type="text" placeholder="微信号" name="" class="textbox">
+            <input type="text" placeholder="微信号" name="weixin" class="textbox">
         <hr/>
         </p>
         <p>
             <span></span>
-            <input type="text" placeholder="请输入相关条款号" name="" class="textbox">
+            <input type="text" placeholder="请输入相关条款号" name="relevantclause" class="textbox">
         <hr>
         </p>
         <p style="text-align: center;color:blue">-问题描述-</p>
         <p>
-            <textarea cols="90" rows="12" placeholder="字数限制30-500之间(必填)" name="">
+            <textarea cols="90" rows="12" placeholder="字数限制30-500之间(必填)" name="content">
 
             </textarea>
         </p>
