@@ -10,7 +10,8 @@
 <div>
     <div th:replace="~{common::settings(active='page')}"></div>
     <div id="main" class="">
-        <form action="/allPage" method="post">
+        <a th:href="@{/toaddAdmin}">添加用户</a>
+        <form action="/AdminInfo" method="post">
             <p>管理员手机：
                 <input name="phone" th:value="${phone}">
             </p>
@@ -30,15 +31,29 @@
             <tr th:each="l:${pageInfo.list}">
                 <td th:text="${l.phone}"></td>
                 <td th:text="${l.aname}"></td>
-                <td th:text="${l.adddata}"></td>
+                <td th:text="${#dates.format(l.adddata,'yyyy-MM-dd')}"></td>
                 <td>
-                    <a th:href="@{}">编辑</a>
-                    <a th:href="@{}">删除</a>
+                    <a href="#" th:onclick="'javascript:toupdateAdmin('+${l.id}+')'">编辑</a>
+                    <a th:href="@{/s}">删除</a>
                 </td>
             </tr>
         </table>
+
+        <div>
+            <a th:href="@{/AdminInfo(phone=${phone},name=${name},pageNum=${pageInfo.pageNum==pageInfo.getFirstPage()}?${pageInfo.getPageNum()}:${pageInfo.getPrePage()})}">
+                上一页 </a>
+            <a th:href="@{/AdminInfo(lawsid=${phone},like=${name},pageNum=${pageInfo.pageNum==pageInfo.getLastPage()}?${pageInfo.getPageNum()}:${pageInfo.getNextPage()})}">下一页</a>
+        </div>
+        <div>
+            <a th:text="'第'+${pageInfo.getPageNum()}+'页/共'+${pageInfo.getPages()}+'条数据'"></a>
+        </div>
     </div>
 </div>
+<script>
+    function toupdateAdmin(id) {
+        location.href = "/toupdateAdmin?id=" + id;
+    }
+</script>
 <script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
 <script type="text/javascript" th:src="@{/js/main.js}"></script>
 <script type="text/javascript" th:src="@{/js/djm-main.js}"></script>

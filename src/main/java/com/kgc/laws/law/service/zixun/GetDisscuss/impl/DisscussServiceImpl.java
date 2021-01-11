@@ -3,7 +3,6 @@ package com.kgc.laws.law.service.zixun.GetDisscuss.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.kgc.laws.law.mapper.DisscussMapper;
-import com.kgc.laws.law.mapper.DisscussMapper;
 import com.kgc.laws.law.pojo.Disscuss;
 import com.kgc.laws.law.pojo.DisscussExample;
 import com.kgc.laws.law.service.zixun.GetDisscuss.DiscussService;

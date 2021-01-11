@@ -48,9 +48,7 @@ public class ClauseServiceImpl implements ClauseService {
     }
 
     @Override
-    public int updateById(Integer id) {
-        Clause clause = new Clause();
-        clause.setId(id);
+    public int updateById(Clause clause) {
         return clauseMapper.updateByPrimaryKeySelective(clause);
     }
 

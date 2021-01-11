@@ -2,10 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>条款列表</title>
     <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
 <body>
+
 <div th:replace="~{common::top}"></div>
 <div>
     <div th:replace="~{common::left(active='page')}"></div>
@@ -26,6 +27,7 @@
     </span>
             <input type="submit" value="查询">
         </form>
+        <a th:href="@{/toaddClause}">添加条款</a>
         <table border="1px">
             <tr>
                 <td>条款号</td>

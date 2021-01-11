@@ -34,4 +34,21 @@ public class AdminServiceImpl implements AdminService {
 
         return pageInfo;
     }
+
+    @Override
+    public int insertAdmin(Admin admin) {
+        return adminMapper.insertSelective(admin);
+    }
+
+    @Override
+    public Admin getAdminById(Integer id) {
+
+        return adminMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int updateAdmin(Admin admin) {
+
+        return adminMapper.updateByPrimaryKey(admin);
+    }
 }
