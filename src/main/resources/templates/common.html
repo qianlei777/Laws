@@ -16,13 +16,13 @@
     <div id="users">
         <h3>用户管理</h3>
         <div class="xiala">
-            <p>用户列表</p>
+            <p><a th:class="${active=='user'?'active':''}" th:href="@{/getAllUser}">用户列表</a></p>
         </div>
     </div>
     <div id="disscuss">
         <h3>咨询管理</h3>
         <div class="xiala">
-            <p>资讯列表</p>
+            <p><a th:class="${active=='disscuss'?'active':''}" th:href="@{/getAllDisscuss}">资讯列表</a></p>
         </div>
     </div>
 </div>

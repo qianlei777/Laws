@@ -11,7 +11,7 @@
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="ccontent" property="ccontent" jdbcType="VARCHAR" />
     <result column="keyword" property="keyword" jdbcType="VARCHAR" />
-    <association property="laws" column="lawid" select="com.kgc.laws.law.mapper.LawsMapper.selectByLawsid"></association>
+    <association property="laws" column="lawid" select="com.kgc.laws.law.mapper.LawsMapper.selectByPrimaryKey"></association>
   </resultMap>
 
   <sql id="Example_Where_Clause" >

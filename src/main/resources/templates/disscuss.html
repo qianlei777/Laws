@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<style>
+    body{
+        margin: 0px;
+    }
+    .zhezhao{
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        background: red;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+    }
+    .tankuang{
+        position: relative;
+        background: greenyellow;
+        width: 50%;
+        height: 80%;
+        border-radius: 5px;
+        margin: 5% auto;
+    }
+    #header{
+        height: 40px;
+    }
+    #header-right{
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        border-radius: 5px;
+        background: red;
+        color: #fff;
+        right: 5px;
+        top: 5px;
+        text-align: center;
+    }
+</style>
+<body>
+<div th:replace="~{common::top}"></div>
+<div>
+    <div th:replace="~{common::left(active='discuss')}"></div>
+<h1>用户咨询列表</h1>
+<div>
+    <form action="/getAllDisscuss" method="post">
+        用户联系方式：<input type="text" name="userphone" th:placeholder="${userphone==null}?'手机号':${userphone}" th:reset>
+        咨询内容：<input type="text" name="content" th:placeholder="${content==null}?'关键字':${content}" th:reset>
+        <button type="submit">查询</button>
+    </form>
+</div>
+<div>
+<table style="width: 800px">
+    <tr id="#biaoheader" style="border: 1px solid black">
+        <td>姓名</td>
+        <td>咨询的内容</td>
+        <td>咨询时间</td>
+        <td>联系方式</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="disscuss:${allDisscuss.list}"  style="border: 1px solid black" th:id="disscussId+${disscuss.id}">
+        <td th:text="${disscuss.username}"></td>
+        <td th:text="${disscuss.content}"></td>
+        <td th:text="${#dates.format(disscuss.consulttime)}"></td>
+        <td th:text="${disscuss.userphone}"></td>
+        <td><a href="#" th:onclick="'javascript:dianwo('+${disscuss.id}+')'">查看</a>/<a href="#" th:onclick="'javascript:del('+${disscuss.id}+')'">删除</a></td>
+    </tr>
+</table>
+    <div>
+        <a th:href="@{/getAllDisscuss(userphone=${userphone},content=${content},pageNum=${allDisscuss.firstPage})}">首页</a>
+        <a th:href="@{/getAllDisscuss(userphone=${userphone},content=${content},pageNum=${allDisscuss.pageNum==allDisscuss.getFirstPage()}?${allDisscuss.getPageNum()}:${allDisscuss.getPrePage()})}">上一页</a>
+        <a th:href="@{/getAllDisscuss(userphone=${userphone},content=${content},pageNum=${allDisscuss.pageNum==allDisscuss.getLastPage()}?${allDisscuss.getPageNum()}:${allDisscuss.getNextPage()})}">下一页</a>
+        <a th:href="@{/getAllDisscuss(userphone=${userphone},content=${content},pageNum=${allDisscuss.lastPage})}">尾页</a>
+        <a th:text="'第'+${allDisscuss.getPageNum()}+'页/共'+${allDisscuss.getPages()}+'页'"></a>
+    </div>
+</div>
+<div class="zhezhao" id='zhezhao'>
+    <div class="tankuang">
+        <div id="header">
+            <div id="header-right" onclick="hidder()">x</div>
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+<script type="text/javascript" th:src="@{js/main.js}"></script>
+<section>
+    <script type="text/javascript">
+        document.getElementById('zhezhao').style.display="none";
+        function dianwo(id){
+            $.get("/cha","id="+id,function (flag) {
+                $("#header").append("<div id='chuang'><p>"+flag.username+"&nbsp;&nbsp;&nbsp;&nbsp;"+flag.userphone+"</p><p>"+flag.content+"</p><p>"+new Date().Format('yyyy-MM-dd',flag.consulttime)+"</p></div>");
+            });
+            document.getElementById('zhezhao').style.display="";
+        }
+        function hidder(){
+            document.getElementById('zhezhao').style.display="none";
+            $("#chuang").remove();
+        }
+    </script>
+<script>
+    function del(id) {
+        var flag=confirm("是否确认删除？");
+        if (flag){
+            $.get("/del","id="+id,function (flag) {
+                if (flag==="true"){
+                    alert("删除成功！！");
+                    $("#disscussId"+id).remove();
+                }else if(flag==="false"){
+                    alert("删除失败！！！");
+                }
+            })
+        }
+    }
+</script>
+</section>
+</body>
+</html>
