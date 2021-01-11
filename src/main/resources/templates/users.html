@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript" th:src="@{js/jquery-1.12.4.js}"></script>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
 <body>
+<div th:replace="~{common::top}"></div>
+<div>
+    <div th:replace="~{common::left(active='laws')}"></div>
 <h1>用户列表</h1>
 <div>
     <form action="/getAllUser" method="post">
