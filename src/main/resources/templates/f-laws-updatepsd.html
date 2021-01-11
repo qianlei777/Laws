@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="updatepassward" method="post">
+<p>旧密码:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="p1">*<span id="span1"></span></p>
+<p>新密码:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="p2" name="password">*<span id="span2"></span></p>
+<p>确认密码:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="p3">*<span id="span3"></span></p>
+<p><input type="submit" value="保存"></p>
+</form>
+<script src="webjars/jquery/2.2.4/jquery.js"></script>
+<script>
+   //旧密码非空验证和判断是否正确
+    function jiu() {
+        var jium=$("#p1").val();
+        if (jium==""){
+            $("#span1").html("请填写旧密码");
+            return false;
+        }else {
+            $("#span1").html("");
+            $.post("confirmpassword",{"password":jium},function (flag) {
+                if(flag=="false"){
+                    $("#span1").html("旧密码输入错误");
+
+                    return false;
+                }else{
+                    $("#span1").html("");
+                }
+            })
+        }
+    }
+    $("#p1").blur(jiu);
+    //新密码非空验证
+    function xin() {
+        var xinm=$("#p2").val();
+        if(xinm==""){
+            $("#span2").html("请填写新密码");
+            return false;
+        }else{
+            $("#span2").html("");
+        }
+    }
+
+    //确认密码验证
+    function qrmm() {
+        var qr=$("#p3").val();
+        var xinm=$("#p2").val();
+        if(qr==""){
+            $("#span3").html("请填写确认密码");
+            return false;
+        }else {
+            if (qr!=xinm) {
+                $("#span3").html("两次密码不一致");
+                return false;
+            } else {
+                $("#span3").html("");
+            }
+        }
+    }
+
+    $("form").submit(function () {
+        if(jiu()==false){
+            return false;
+        }
+        if(xin()==false){
+            return false;
+        }
+        if(qrmm()==false){
+            return false;
+        }
+        return false;
+    })
+
+</script>
+</body>
+</html>

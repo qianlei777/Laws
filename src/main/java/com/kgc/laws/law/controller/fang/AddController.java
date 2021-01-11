@@ -1,17 +1,23 @@
 package com.kgc.laws.law.controller.fang;
 
 import com.github.pagehelper.PageInfo;
+import com.kgc.laws.law.pojo.Admin;
 import com.kgc.laws.law.pojo.Laws;
 import com.kgc.laws.law.service.addservice.AddService;
 
+import com.kgc.laws.law.service.addservice.AdminoneService;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +29,8 @@ public class AddController {
 
     @Autowired
     AddService addService;
+    @Resource
+    AdminoneService adminoneService;
 
     //增加页面
     @RequestMapping("add")
@@ -102,7 +110,7 @@ public class AddController {
             return "redirect:showall";
 
         }else {
-            return "f-laws-add";
+            return "f-laws-add" ;
         }
     }
 
@@ -139,5 +147,65 @@ public class AddController {
         int i = addService.updateByPrimaryKey(laws);
 
         return "redirect:showall";
+    }
+
+
+    //根据session所获取的id查询登录者的个人信息
+    @RequestMapping("personalone")
+    public String addtext05(HttpSession session,Model model){
+        Admin admin = (Admin) session.getAttribute("admin");
+            Integer id=admin.getId();
+        Admin admin1 = adminoneService.selectByPrimaryKey(id);
+        model.addAttribute("admin",admin1);
+        return "f-laws-personal";
+    }
+
+
+    //根据session所获取的id修改登录者的个人信息
+    @RequestMapping("personnal")
+    public String addtext06(String remark,HttpSession session,Model model){
+        Admin admin = (Admin) session.getAttribute("admin");
+        Integer id=admin.getId();
+        Admin admin1=new Admin();
+        admin1.setId(id);
+        admin1.setRemark(remark);
+        int i = adminoneService.updateByPrimaryKey(admin1);
+
+        return "redirect:personalone";
+    }
+
+
+    //跳转到修改管理员密码页面
+    @RequestMapping("up")
+    public String addtext08(){
+        return "f-laws-updatepsd.html";
+    }
+
+    //根据session所获取的管理员判断是否和输入的一致  ajax方法
+    @PostMapping("confirmpassword")
+    @ResponseBody
+    public String addtext07(String password,HttpSession session){
+        Admin admin = (Admin) session.getAttribute("admin");
+        String id=admin.getPassword();
+        String flag="true";
+        if(!(password.equals(id))){
+            flag="false";
+        }
+        return flag;
+    }
+    //修改管理员密码
+    @RequestMapping("updatepassward")
+    public String addtext09(String password,HttpSession session,Model model){
+        Admin admin = (Admin) session.getAttribute("admin");
+        Integer id=admin.getId();
+        Admin admin1=new Admin();
+        admin1.setId(id);
+        admin1.setPassword(password);
+        int i = adminoneService.updateByPrimaryKey(admin1);
+        if(i>0){
+            session.invalidate();
+            return "adminLogin";
+        }
+        return "redirect:up";
     }
 }
