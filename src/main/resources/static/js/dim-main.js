@@ -7,3 +7,11 @@ function isRole(role) {
         return false;
     }
 }
+
+//退出登录
+function quit() {
+    if(confirm("确定要退出？")){
+        return true;
+    }
+    return false;
+}

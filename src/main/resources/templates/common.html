@@ -1,8 +1,10 @@
 <div id="title" th:fragment="top">
     <h1>航多知识管理系统</h1>
-    <p><a>我的面板</a>&nbsp;&nbsp;<a th:class="${active=='yewu'?'yewu':''}">业务管理</a>
+    <p>
+        <a th:href="@{personalone}">我的面板</a>&nbsp;&nbsp;<a th:class="${active=='yewu'?'yewu':''}" th:href="@{fshow}">业务管理</a>
         <!--${admin.role}-->
-        &nbsp;&nbsp;<a th:href="@{/toSetting}" th:οnclick="|return isRole('${session.admin.id}')|">系统设置</a>您好,admin</p>
+        &nbsp;&nbsp;<a th:href="@{/toSetting}" th:οnclick="|return isRole('${session.admin.id}')|">系统设置</a>
+        您好,<a th:href="@{/quit}" th:οnclick="|return quit()|" th:text="${session.admin.aname}"></a></p>
 </div>
 <div id="bar" th:fragment="left">
     <div id="clause">

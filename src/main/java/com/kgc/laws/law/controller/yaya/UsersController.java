@@ -83,4 +83,10 @@ public class UsersController {
         session.invalidate();
         return "html/login";
     }
+
+    @RequestMapping("/quit")
+    public  String quit(HttpSession session){
+        session.invalidate();
+        return "adminLogin";
+    }
 }

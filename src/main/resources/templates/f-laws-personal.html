@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.apache.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<a th:href="@{/up}">修改密码</a>
 <form action="personnal" method="post">
 <p>归属公司:&nbsp;&nbsp;&nbsp;上海航多航空</p>
 <p>归属部门:&nbsp;&nbsp;&nbsp;系统运维</p>
 <p>管理员姓名:&nbsp;<input readonly type="text" th:value="${admin.aname}"></p>
 <p>管理员手机号:&nbsp;<input readonly type="text" th:value="${admin.phone}"></p>
-<p>备注:&nbsp;&nbsp;<textarea cols="50px" rows="5px" name="remark"></textarea></p>
+<p>备注:&nbsp;&nbsp;<textarea cols="50px" rows="5px" name="remark" th:text="${admin.remark}"></textarea></p>
 <p>用户角色:&nbsp;&nbsp;&nbsp;&nbsp;航多知识管理系统维护管理员</p>
 <p>上次登录时间:&nbsp;&nbsp;&nbsp;&nbsp;</p>
 <p><input type="submit" value="保存"></p>

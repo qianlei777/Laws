@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<a th:href="@{/personalone}">个人信息</a>
 <form action="updatepassward" method="post">
 <p>旧密码:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="p1">*<span id="span1"></span></p>
 <p>新密码:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="p2" name="password">*<span id="span2"></span></p>
@@ -71,7 +72,7 @@
         if(qrmm()==false){
             return false;
         }
-        return false;
+        return true;
     })
 
 </script>

@@ -165,11 +165,8 @@ public class AddController {
     @RequestMapping("personnal")
     public String addtext06(String remark,HttpSession session,Model model){
         Admin admin = (Admin) session.getAttribute("admin");
-        Integer id=admin.getId();
-        Admin admin1=new Admin();
-        admin1.setId(id);
-        admin1.setRemark(remark);
-        int i = adminoneService.updateByPrimaryKey(admin1);
+        admin.setRemark(remark);
+        int i = adminoneService.updateByPrimaryKey(admin);
 
         return "redirect:personalone";
     }
@@ -197,13 +194,11 @@ public class AddController {
     @RequestMapping("updatepassward")
     public String addtext09(String password,HttpSession session,Model model){
         Admin admin = (Admin) session.getAttribute("admin");
-        Integer id=admin.getId();
-        Admin admin1=new Admin();
-        admin1.setId(id);
-        admin1.setPassword(password);
-        int i = adminoneService.updateByPrimaryKey(admin1);
+        admin.setPassword(password);
+        System.out.println(password);
+        int i = adminoneService.updateByPrimaryKey(admin);
         if(i>0){
-            session.invalidate();
+//            session.invalidate();
             return "adminLogin";
         }
         return "redirect:up";
