@@ -9,6 +9,7 @@
 <div th:replace="~{common::top}"></div>
 <div>
     <div th:replace="~{common::settings(active='page')}"></div>
+
     <div id="main" class="">
         <a th:href="@{/toaddAdmin}">添加用户</a>
         <form action="/AdminInfo" method="post">
@@ -45,7 +46,7 @@
             <a th:href="@{/AdminInfo(lawsid=${phone},like=${name},pageNum=${pageInfo.pageNum==pageInfo.getLastPage()}?${pageInfo.getPageNum()}:${pageInfo.getNextPage()})}">下一页</a>
         </div>
         <div>
-            <a th:text="'第'+${pageInfo.getPageNum()}+'页/共'+${pageInfo.getPages()}+'条数据'"></a>
+            <a th:text="'第'+${pageInfo.getPageNum()}+'页/共'+${pageInfo.getTotal()}+'条数据'"></a>
         </div>
     </div>
 </div>

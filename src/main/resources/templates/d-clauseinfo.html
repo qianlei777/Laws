@@ -37,7 +37,7 @@
                 <td>操作</td>
             </tr>
             <tr th:each="p:${pageInfo.list}">
-                <td th:text="${p.laws.lawsid}+'.'+${p.id}"></td>
+                <td th:text="${p.clauseid}"></td>
                 <td th:text="${p.title}"></td>
                 <td th:text="${p.laws.lawsname}"></td>
                 <td th:text="${p.lawsversion}"></td>
@@ -53,7 +53,7 @@
             <a th:href="@{/getClauseAll(lawsid=${lawsid},like=${like},clauseid=${clauseid},pageNum=${pageInfo.pageNum==pageInfo.getLastPage()}?${pageInfo.getPageNum()}:${pageInfo.getNextPage()})}">下一页</a>
         </div>
         <div>
-            <a th:text="'第'+${pageInfo.getPageNum()}+'页/共'+${pageInfo.getPages()}+'条数据'"></a>
+            <a th:text="'第'+${pageInfo.getPageNum()}+'页/共'+${pageInfo.getTotal()}+'条数据'"></a>
         </div>
     </div>
 </div>

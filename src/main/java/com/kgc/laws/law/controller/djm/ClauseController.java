@@ -95,6 +95,7 @@ public class ClauseController {
     }
 
     @RequestMapping("/updataClause")
+    @ResponseBody
     public String updataClause(Clause clause) {
         int i = clauseService.updataClauseByClause(clause);
         if (i > 0) {

@@ -26,7 +26,7 @@
                 <input name="ispwd" type="password">
             </p>
             <p>用户角色：
-                <input type="radio" name="role" th:checked="${adminById.role==1?'checked':''}" value="1">
+                <input type="checkbox" name="role" th:checked="${adminById.role==1}" value="1">
                 航多知识管理系统维护管理员
             </p>
             <p>备注：

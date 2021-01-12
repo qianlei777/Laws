@@ -18,8 +18,8 @@
                 <p>法规：
                     <select name="lawid">
                         <option th:value="0">请选择</option>
-                        <option th:each="l:${laws}" th:value="${l.lawsid}" th:text="${l.lawstype}+${l.lawsname}"
-                                th:selected="${l.lawsid==clause.lawid}"
+                        <option th:each="l:${laws}" th:value="${l.id}" th:text="${l.lawstype}+${l.lawsname}"
+                                th:selected="${l.id==clause.lawid}"
                         >请选择</option>
                     </select>
                 </p>
@@ -82,14 +82,14 @@
                 return false;
             }
             var clauseid = $("[name='clauseid']").val();
-            //条款编号=部号.条款编号
-            var id = $("[name='id']").val();//条款编号
-            var lawid = $("[name='lawid']").val();//部号id
-            alert(lawid)
-            var isid= lawid+"."+id;
+            //条款编号=部号.条款id
+            // var id = $("[name='id']").val();//条款编号
+            // var lawid = $("[name='lawid']").val();//部号id
+            // alert(lawid)
+            // var isid= lawid+"."+id;
             // alert(isid)
-            if(clauseid!=isid){
-                alert("部号填写错误");
+            if(clauseid==""||clauseid==null){
+                alert("请填写条款编号");
                 return false;
             }
             var lawstype = $("[name='lawstype']").val();
